@@ -1,19 +1,26 @@
 import React from 'react';
 import './index.css';
-import ReactDOM from 'react-dom';
+import {createRoot} from 'react-dom/client';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import Home from './pages/Home/';
-import Error from './components/Error'
+import Error from './components/Error';
+import SignIn from './pages/Login';
+import BoPresentationForm from './pages/BO/PresentationForm';
+import Presentation from './pages/Presentation/Presentation';
 
 import reportWebVitals from './reportWebVitals';
 
-const root = ReactDOM.createRoot(document.getElementById('root'));
+const rootElement = document.getElementById('root');
+const root = createRoot(rootElement);
 root.render(
   <React.StrictMode>
         <Router>
             <Routes>
               <Route path="/" element={<Home />} />
               <Route path="*" element={<Error />} />
+              <Route path="/signin" element={<SignIn />} />
+              <Route path="/formulaire-presentation" element={<BoPresentationForm />} />
+              <Route path="/presentation" element={<Presentation />} />
             </Routes>
         </Router>
     </React.StrictMode>

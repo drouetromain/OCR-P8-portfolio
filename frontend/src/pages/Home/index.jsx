@@ -1,6 +1,7 @@
 import Header from '../../components/Header/'
+import Navigation from '../../components/Navigation/'
 import Hero from '../../components/Hero/'
-import Presentation from '../../components/Presentation/'
+import Presentations from '../../components/Presentations/'
 import Skills from '../../components/Skills/'
 import Services from '../../components/Services/'
 import Portfolio from '../../components/Portfolio/'
@@ -13,7 +14,7 @@ function Home() {
         <div>
             <Header />
             <Hero />
-            <Presentation />
+            <Presentations />
             <Skills />
             <Services />
             <Portfolio />

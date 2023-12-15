@@ -1,0 +1,28 @@
+.bo-hide-form {
+    display: none;
+}
+
+.bo-container{
+    display: flex;
+}
+
+.bo-nav{
+    display: flex;
+    flex-direction: column;
+}
+
+/* Compétences */
+
+.bo-competence-img-preview{
+    width: 50px;
+}
+
+button {
+    background-color: red;
+    border-radius: 20px;
+    padding: 5px 30px;
+    color: #fff;
+    border: none;
+    margin: 10px;
+    width: 150px;
+}
