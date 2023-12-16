@@ -5,6 +5,7 @@ import * as PropTypes from 'prop-types';
 import { useNavigate } from 'react-router-dom';
 import { updateNavigation, addNavigation } from '../../../lib/common-navigation';
 import { getNavigations, deleteNavigation } from '../../../lib/common-navigation';
+import '../Bo.css'
 
 function NavigationForm({ navigation, validate }) {
 
@@ -31,39 +32,44 @@ function NavigationForm({ navigation, validate }) {
   // eslint-disable-next-line max-len
 
   const displayNavigations = () => (navigations ? navigations.map(({ _id, label, link, target }) =>
-    <div key={_id}>
-      <div id={_id}>
-        <div>Label du lien : {label}</div>
-        <div>Url : {link}</div>
-        <div>Target : {target}</div>
+    <article key={_id} className='bo-article-preview'>
+      <div className='bo-drag-and-drop'>
+        <span class="material-symbols-outlined">drag_indicator</span>
       </div>
-      <button onClick={async () => {
-        // Récupération de l'_id d'une présentation
-        const prezId = { _id };
-        await setPrez(prezId);
-        setDisplayForm(true)
-        setIsForUpdate(true)
-        setValue('id', _id);
-        setValue('label', label);
-        setValue('link', link);
-        setValue('target', target);
-      }}>Modifier
-      </button>
+      <div>
+        <div id={_id} className='bo-article-navigation'>
+          <div><span className='bo-article-label'>Label du lien</span><div className='bo-result-field'>{label}</div></div>
+          <div><span className='bo-article-label'>Url</span><div className='bo-result-field'>{link}</div></div>
+          <div><span className='bo-article-label'>Target</span><div className='bo-result-field'>{target}</div></div>
+        </div>
+        <button onClick={async () => {
+          // Récupération de l'_id d'une présentation
+          const prezId = { _id };
+          await setPrez(prezId);
+          setDisplayForm(true)
+          setIsForUpdate(true)
+          setValue('id', _id);
+          setValue('label', label);
+          setValue('link', link);
+          setValue('target', target);
+        }} className='bo-btn'>Modifier
+        </button>
 
-      <button onClick={async () => {
-        // Récupération de l'_id d'une présentation
-        const prezId = { _id };
-        await setPrez(prezId);
-        // Suppression d'une présentation 
-        deleteNavigation(prezId._id);
-        if (submit === false) {
-          setSubmit(true);
-        } else {
-          setSubmit(false);
-        };
-      }}>Supprimer
-      </button>
-    </div>) : <h1>Il n'y a pas encore de présentation</h1>
+        <button onClick={async () => {
+          // Récupération de l'_id d'une présentation
+          const prezId = { _id };
+          await setPrez(prezId);
+          // Suppression d'une présentation 
+          deleteNavigation(prezId._id);
+          if (submit === false) {
+            setSubmit(true);
+          } else {
+            setSubmit(false);
+          };
+        }} className='bo-btn'>Supprimer
+        </button>
+      </div>
+    </article>) : <h1>Il n'y a pas encore de présentation</h1>
   );
 
 
@@ -115,26 +121,36 @@ function NavigationForm({ navigation, validate }) {
   }, [submit]);
 
   return (
-    <section>
-      {loading ? <h1>Chargement</h1> : displayNavigations()}
-      <button className={displayForm ? 'bo-hide-form' : ''} onClick={() => setDisplayForm(true)}>Ajouter</button>
-
-      <form onSubmit={handleSubmit(onSubmit)} className={displayForm ? '' : 'bo-hide-form'}>
-        <input type="hidden" id="id" {...register('id')} />
-        <label htmlFor="label">
-          <p>Label :</p>
-          <input type="text" id="label" {...register('label')} />
-        </label>
-        <label htmlFor="link">
-          <p>Lien :</p>
-          <input type="text" id="link" {...register('link')} />
-        </label>
-        <label htmlFor="target">
-          <p>Target :</p>
-          <input type="text" id="target" {...register('target')} />
-        </label>
-        <button type="submit" >Publier</button>
-      </form>
+    <section className='bo-section'>
+      <div>
+        {loading ? <h1>Chargement</h1> : displayNavigations()}
+      </div>
+      <div>
+        <span className={displayForm ? 'bo-hide-form' : ''} ><button onClick={() => setDisplayForm(true)} className='bo-btn'>Ajouter</button></span>
+        <div className={displayForm ? '' : 'bo-hide-form'}>
+          <article className='bo-article-preview'>
+            <div className='bo-article-form'>
+              <form onSubmit={handleSubmit(onSubmit)} className={displayForm ? '' : 'bo-hide-form'}>
+                <input type="hidden" id="id" {...register('id')} />
+                <label htmlFor="label">
+                  <span className='bo-article-label'>Label</span>
+                  <input type="text" id="label" {...register('label')} className='bo-input-field'/>
+                </label>
+                <label htmlFor="link">
+                  <span className='bo-article-label'>Lien</span>
+                  <input type="text" id="link" {...register('link')} className='bo-input-field'/>
+                </label>
+                <label htmlFor="target">
+                  <span className='bo-article-label'>Target</span>
+                  <input type="text" id="target" {...register('target')} className='bo-input-field'/>
+                </label>
+                <button type="submit" className='bo-btn'>Publier</button>
+              </form>
+            </div>
+          </article>
+        </div>
+        
+      </div>
     </section>
   );
 }

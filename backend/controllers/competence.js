@@ -17,39 +17,35 @@ exports.createCompetence = (req, res, next) => {
 };
 
 exports.modifyCompetence = (req, res, next) => {
-    console.log(`${req.protocol}://${req.get('host')}/images/${req.file.filename}`);
-    let competenceObject = req.file ? {
-        ...JSON.parse(req.body.competence),
-        imageUrl: `${req.protocol}://${req.get('host')}/images/${req.file.filename}`
-    } : JSON.parse(req.body.competence);
-
+    let competenceObject = JSON.parse(req.body.competence) ;
     delete competenceObject._userId;
+
     Competence.findOne({ _id: req.params.id })
         .then((competence) => {
             if (competence.userId != req.auth.userId) {
                 res.status(401).json({ message: 'Non-autorisé !' });
             } else {
-                // const filePath = './images/' + competence.imageUrl.split('/').slice(-1)[0];
-                
-                const filePath = './images/';
-                console.log(filePath);
-                console.log(fs.existsSync(filePath));
-                console.log(req?.file?.filename);
-                                    
-                if (fs.existsSync(filePath) && req?.file?.filename) {
-                    try {
-                        fs.unlinkSync(filePath)
-                        console.log('File deleted successfully')
-                    }   catch (err) { console.error(err) }
-                } else {
-                    console.log('File not found')
+
+                if (req?.file) {
+                    const filePath = `controllers/images/${competence.imageUrl.split('/').slice(-1)[0]}`;
+                    if (fs.existsSync(filePath)) {
+                        try {
+                            fs.unlinkSync(filePath)
+                            console.log('File deleted successfully')
+                            competenceObject.imageUrl = `${req.protocol}://${req.get('host')}/images/${req.file.filename}`;
+
+                        } catch (err) { console.error(err) }
+                    } else {
+                        console.log('File not found')
+                        competenceObject.imageUrl = "File not found";
+                    }
+                }else{
+                    competenceObject.imageUrl = competence.imageUrl;
                 }
+
                 competenceObject._id = req.params.id;
-                competenceObject.imageUrl = competence.imageUrl;
 
-                // console.log(competenceObject);
-
-                Competence.updateOne({ _id: req.params.id }, {...competenceObject})
+                Competence.updateOne({ _id: req.params.id }, { ...competenceObject })
                     .then(() => res.status(200).json({ message: 'Compétence modifié!' }))
                     .catch(error => res.status(401).json({ error }));
             }
@@ -76,7 +72,7 @@ exports.deleteCompetence = (req, res, next) => {
         .catch(error => {
             res.status(500).json({ error });
         }
-    );
+        );
 
 };
 

@@ -11,18 +11,145 @@
     flex-direction: column;
 }
 
+.bo-section{
+    margin-left: 20px;
+}
+
+.bo-nav-btn {
+    padding: 10px 30px 10px 0;
+    text-align: left;
+    color: #fff;
+    border: none;
+    margin: 10px;
+    width: 150px;
+    background-color: transparent;
+}
+
+.bo-nav-link{
+    color: #fff;
+    display: flex;
+    align-items: center;
+    padding-left: 20px;
+}
+
+/* Global CSS */
+body, button, input {
+    font-family: 'Lato', sans-serif;
+    font-family: 'Montserrat', sans-serif;
+}
+.bo-container {
+    background-color: #f9f9f9;
+}
+
+.bo-h2-block{
+    display: flex;
+    align-items: center;
+}
+
+.bo-h2-icon{
+    padding-right: 10px;
+}
+.bo-section{
+    display: flex;
+    flex-direction: row-reverse;
+}
+
+.bo-drag-and-drop{
+    display: flex;
+    align-items: center;
+    background-color: #dee0e3;
+    padding: 3px;
+}
+
+.bo-article-form{
+    padding: 10px;
+}
+
+.bo-nav {
+    background-color: #203241;
+    width: 200px;
+}
+
+.bo-btn {
+    background-color: #56adde;
+    padding: 10px 30px;
+    color: #fff;
+    border: none;
+    margin: 10px;
+    width: 150px;
+}
+
+.bo-input-field{
+    border: solid 1px #bfbdbf;
+    padding: 10px 30px 10px 30px !important;
+    margin: 10px 0;
+    color: #000;
+}
+
+.bo-result-field {
+    border: solid 1px #bfbdbf;
+    padding: 10px 30px 10px 30px !important;
+    margin: 10px 0;
+    color: #bfbdbf;
+}
+
+.bo-article-label {
+    display: flex;
+    align-items: center;
+    font-weight: bold;
+    color: #000;
+    padding: 10px;
+}
+.bo-article-preview {
+    display: flex;
+    justify-content: space-between;
+    background-color: #fff;
+    margin: 10px 20px 10px 0;
+    border: solid 1px #eae8e8;
+    border-radius: 5px;
+}
+
+/* Navigation */
+
+.bo-article-navigation{
+    padding: 10px;
+}
+
+/* Présentation */
+
+.bo-article-presentation{
+    padding: 10px;
+}
 /* Compétences */
+
+.bo-article-competence {
+    display: flex;
+
+}
+
+.bo-article-competence-details {
+    padding: 10px;
+}
+
+.bo-article-competence-preview {
+    display: flex;
+    flex-direction: column;
+    justify-content: end;
+    padding: 10px;
+    color: #bfbdbf;
+}
+
+.bo-article-competence-preview div {
+    display: flex;
+    justify-content: center;
+    padding: 0 0 10px 0;
+}
 
 .bo-competence-img-preview{
     width: 50px;
 }
 
-button {
-    background-color: red;
-    border-radius: 20px;
-    padding: 5px 30px;
-    color: #fff;
-    border: none;
-    margin: 10px;
-    width: 150px;
+.bo-article-btn{
+    display: flex;
+    justify-content: end;
 }

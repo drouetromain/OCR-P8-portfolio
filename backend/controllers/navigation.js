@@ -10,7 +10,7 @@ exports.createNavigation = (req, res, next) => {
 
     const navigation = new Navigation(req.body);
 
-    Navigation.save()
+    navigation.save()
         .then(() => { res.status(201).json({ message: 'Présentation enregistrée !' }) })
         .catch(error => { res.status(400).json({ error }) })
 };
@@ -21,7 +21,7 @@ exports.modifyNavigation = (req, res, next) => {
     } : { ...req.body };
 
     delete navigationObject._userId;
-    navigation.findOne({ _id: req.params.id })
+    Navigation.findOne({ _id: req.params.id })
         .then((navigation) => {
             if (navigation.userId != req.auth.userId) {
                 res.status(401).json({ message: 'Non-autorisé !' });

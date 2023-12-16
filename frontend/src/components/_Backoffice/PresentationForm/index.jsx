@@ -5,6 +5,7 @@ import * as PropTypes from 'prop-types';
 import { useNavigate } from 'react-router-dom';
 import { updatePresentation, addPresentation } from '../../../lib/common';
 import { getPresentations, deletePresentation } from '../../../lib/common';
+import '../Bo.css'
 
 function PresentationForm({ presentation, validate }) {
 
@@ -45,39 +46,41 @@ function PresentationForm({ presentation, validate }) {
   // eslint-disable-next-line max-len
 
   const displayPresentations = () => (presentations ? presentations.map(({ _id, title, description, anchorId }) =>
-    <div key={_id}>
-      <div id={_id}>
-        <div>Titre de la description : {title}</div>
-        <div>Description : {description}</div>
-        <div>Ancre : {anchorId}</div>
-      </div>
-      <button onClick={async () => {
-        // Récupération de l'_id d'une présentation
-        const prezId = { _id };
-        await setPrez(prezId);
-        setDisplayForm(true)
-        setIsForUpdate(true)
-        setValue('id', _id);
-        setValue('title', title);
-        setValue('description', description);
-        setValue('anchorId', anchorId);
-      }}>Modifier
-      </button>
+    <article key={_id} className='bo-article-preview'>
+      <div>
+        <div id={_id} className='bo-article-presentation'>
+          <div><span className='bo-article-label'>Titre de la description</span><div className='bo-result-field'>{title}</div></div>
+          <div><span className='bo-article-label'>Description</span><div className='bo-result-field'>{description}</div></div>
+          <div><span className='bo-article-label'>Ancre</span><div className='bo-result-field'>{anchorId}</div></div>
+        </div>
+        <button onClick={async () => {
+          // Récupération de l'_id d'une présentation
+          const prezId = { _id };
+          await setPrez(prezId);
+          setDisplayForm(true)
+          setIsForUpdate(true)
+          setValue('id', _id);
+          setValue('title', title);
+          setValue('description', description);
+          setValue('anchorId', anchorId);
+        }} className='bo-btn'>Modifier
+        </button>
 
-      <button onClick={async () => {
-        // Récupération de l'_id d'une présentation
-        const prezId = { _id };
-        await setPrez(prezId);
-        // Suppression d'une présentation 
-        deletePresentation(prezId._id);
-        if (submit === false) {
-          setSubmit(true);
-        } else {
-          setSubmit(false);
-        };
-      }}>Supprimer
-      </button>
-    </div>) : <h1>Il n'y a pas encore de présentation</h1>
+        <button onClick={async () => {
+          // Récupération de l'_id d'une présentation
+          const prezId = { _id };
+          await setPrez(prezId);
+          // Suppression d'une présentation 
+          deletePresentation(prezId._id);
+          if (submit === false) {
+            setSubmit(true);
+          } else {
+            setSubmit(false);
+          };
+        }} className='bo-btn'>Supprimer
+        </button>
+      </div>
+    </article>) : <h1>Il n'y a pas encore de présentation</h1>
   );
 
 
@@ -129,26 +132,34 @@ function PresentationForm({ presentation, validate }) {
   }, [submit]);
 
   return (
-    <section>
-      {loading ? <h1>Chargement</h1> : displayPresentations()}
-      <button className={displayForm ? 'bo-hide-form' : ''} onClick={() => setDisplayForm(true)}>Ajouter</button>
-
-      <form onSubmit={handleSubmit(onSubmit)} className={displayForm ? '' : 'bo-hide-form'}>
-        <input type="hidden" id="id" {...register('id')} />
-        <label htmlFor="title">
-          <p>Titre :</p>
-          <input type="text" id="title" {...register('title')} />
-        </label>
-        <label htmlFor="description">
-          <p>Description :</p>
-          <input type="text" id="description" {...register('description')} />
-        </label>
-        <label htmlFor="anchorId">
-          <p>Ancre :</p>
-          <input type="text" id="anchorId" {...register('anchorId')} />
-        </label>
-        <button type="submit" >Publier</button>
-      </form>
+    <section className='bo-section'>
+      <div>
+        {loading ? <h1>Chargement</h1> : displayPresentations()}
+      </div>
+      <div>
+        <button className={displayForm ? 'bo-hide-form' : ''} onClick={() => setDisplayForm(true)} className='bo-btn'>Ajouter</button>
+        <article className='bo-article-preview' className={displayForm ? '' : 'bo-hide-form'}>
+          <div className='bo-article-form'>
+            <form onSubmit={handleSubmit(onSubmit)} className={displayForm ? '' : 'bo-hide-form'}>
+              <input type="hidden" id="id" {...register('id')} />
+              <label htmlFor="title">
+              <span className='bo-article-label'>Titre</span>
+                <input type="text" id="title" {...register('title')} className='bo-input-field'/>
+              </label>
+              <label htmlFor="description">
+                <span className='bo-article-label'>Description</span>
+                <input type="text" id="description" {...register('description')} className='bo-input-field'/>
+              </label>
+              <label htmlFor="anchorId">
+                <span className='bo-article-label'>Ancre</span>
+                <input type="text" id="anchorId" {...register('anchorId')} className='bo-input-field'/>
+              </label>
+              <button type="submit" className='bo-btn'>Publier</button>
+            </form>
+          </div>
+        </article>
+      </div>
+      
     </section>
   );
 }
