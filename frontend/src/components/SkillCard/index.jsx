@@ -1,10 +1,9 @@
-function SkillCard() {
+function SkillCard({ title, anchorId, imageUrl, alt, description }) {
     return (
-        <div>
-            <h3>Titre H3</h3>
-            <div>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-            </div>
+        <div id={anchorId}>
+            <h3>{title}</h3>
+            <img src={imageUrl} alt={alt} />
+            <div>{description}</div>
         </div>
     )
 }

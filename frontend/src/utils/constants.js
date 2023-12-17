@@ -5,6 +5,7 @@ export const API_ROUTES = {
   BOOKS: `${API_URL}/api/books`,
   PRESENTATIONS: `${API_URL}/api/presentations`,
   NAVIGATIONS: `${API_URL}/api/navigations`,
+  SERVICES: `${API_URL}/api/services`,
   COMPETENCES: `${API_URL}/api/competences`,
 };
 
@@ -16,5 +17,6 @@ export const APP_ROUTES = {
   PRESENTATIONS: '/formulaire-presentation',
   NAVIGATIONS: '/formulaire-presentation',
   COMPETENCES: '/formulaire-presentation',
+  SERVICES: '/formulaire-presentation',
   UPDATE_BOOK: 'livre/modifier/:id',
 };

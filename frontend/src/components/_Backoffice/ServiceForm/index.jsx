@@ -3,14 +3,14 @@ import React, { useEffect, useMemo, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import * as PropTypes from 'prop-types';
 import { useNavigate } from 'react-router-dom';
-import { updateNavigation, addNavigation } from '../../../lib/common-navigation';
-import { getNavigations, deleteNavigation } from '../../../lib/common-navigation';
+import { updateService, addService } from '../../../lib/common-service';
+import { getServices, deleteService } from '../../../lib/common-service';
 import '../Bo.css'
 
-function NavigationForm({ navigation, validate }) {
+function ServiceForm({ service, validate }) {
 
   // Récupération des présentations
-  const [navigations, setNavigations] = useState(null);
+  const [services, setServices] = useState(null);
   const [isForUpdate, setIsForUpdate] = useState(false);
   const [prez, setPrez] = useState(null);
   const [loading, setLoading] = useState(true);
@@ -23,15 +23,17 @@ function NavigationForm({ navigation, validate }) {
     register, handleSubmit, reset, setValue
   } = useForm({
     defaultValues: useMemo(() => ({
-      label: navigation?.label,
-      link: navigation?.link,
-      target: navigation?.target
-    }), [navigation]),
+      title: service?.title,
+      description: service?.description,
+      titleTag: service?.titleTag,
+      tag: service?.tag,
+      anchorId: service?.anchorId
+    }), [service]),
   });
 
   // eslint-disable-next-line max-len
 
-  const displayNavigations = () => (navigations ? navigations.map(({ _id, label, link, target }) =>
+  const displayServices = () => (services ? services.map(({ _id, title, description, titleTag, tag, anchorId }) =>
     <article key={_id} className='bo-article-preview bo-article-preview-navigation'>
       <div className='bo-drag-and-drop'>
         <span class="material-symbols-outlined">drag_indicator</span>
@@ -39,9 +41,11 @@ function NavigationForm({ navigation, validate }) {
       <div>
         <div>
           <div id={_id} className='bo-article-navigation'>
-            <div><span className='bo-article-label'>Label du lien</span><div className='bo-result-field'>{label}</div></div>
-            <div><span className='bo-article-label'>Url</span><div className='bo-result-field'>{link}</div></div>
-            <div><span className='bo-article-label'>Target</span><div className='bo-result-field'>{target}</div></div>
+            <div><span className='bo-article-label'>Titre</span><div className='bo-result-field'>{title}</div></div>
+            <div><span className='bo-article-label'>Description</span><div className='bo-result-field'>{description}</div></div>
+            <div><span className='bo-article-label'>Titre des Tags</span><div className='bo-result-field'>{titleTag}</div></div>
+            <div><span className='bo-article-label'>Tags</span><div className='bo-result-field'>{tag}</div></div>
+            <div><span className='bo-article-label'>Ancre</span><div className='bo-result-field'>{anchorId}</div></div>
           </div>
         </div>
         <div className='bo-article-btn'>
@@ -52,17 +56,19 @@ function NavigationForm({ navigation, validate }) {
             setDisplayForm(true)
             setIsForUpdate(true)
             setValue('id', _id);
-            setValue('label', label);
-            setValue('link', link);
-            setValue('target', target);
+            setValue('title', title);
+            setValue('description', description);
+            setValue('titleTag', titleTag);
+            setValue('tag', tag);
+            setValue('anchorId', anchorId);
             }} className='bo-btn'>Modifier
           </button>
           <button onClick={async () => {
-            // Récupération de l'_id d'une présentation
+            // Récupération de l'_id d'un service
             const prezId = { _id };
             await setPrez(prezId);
-            // Suppression d'une présentation 
-            deleteNavigation(prezId._id);
+            // Suppression d'un service 
+            deleteService(prezId._id);
             if (submit === false) {
               setSubmit(true);
             } else {
@@ -73,7 +79,7 @@ function NavigationForm({ navigation, validate }) {
         </div>
         
       </div>
-    </article>) : <h1>Il n'y a pas encore de présentation</h1>
+    </article>) : <h1>Il n'y a pas encore de service</h1>
   );
 
 
@@ -82,10 +88,10 @@ function NavigationForm({ navigation, validate }) {
   }, [submit]);
 
   const onSubmit = async (data) => {
-    // Je créé une nouvelle item dans le menu
+    // Je créé une nouveau service
     if (!isForUpdate) {
-      const newNavigation = await addNavigation(data);
-      if (!newNavigation.error) {
+      const newService = await addService(data);
+      if (!newService.error) {
         // validate(true);
         setSubmit(true);
         setDisplayForm(false);
@@ -93,41 +99,41 @@ function NavigationForm({ navigation, validate }) {
         console.log('validation ajouté');
         console.log(submit);
       } else {
-        alert(newNavigation.message);
+        alert(newService.message);
       }
     } else {
-      const updatedNavigation = await updateNavigation(data, data.id);
-      if (!updatedNavigation.error) {
+      const updatedService = await updateService(data, data.id);
+      if (!updatedService.error) {
         setSubmit(true);
         setDisplayForm(false);
         setIsForUpdate(false)
         reset();
         console.log('validation updaté');
       } else {
-        alert(updatedNavigation.message);
+        alert(updatedService.message);
       }
     }
   };
 
 
-  // MAJ des présentations (front)
+  // MAJ des services (front)
   useEffect(() => {
-    async function displayNavigations() {
-      const data = await getNavigations();
+    async function displayServices() {
+      const data = await getServices();
       if (data) {
-        setNavigations(data);
+        setServices(data);
         setLoading(false);
       }
     }
-    displayNavigations();
-    displayNavigations();
+    displayServices();
+    displayServices();
 
   }, [submit]);
 
   return (
     <section className='bo-section'>
       <div>
-        {loading ? <h1>Chargement</h1> : displayNavigations()}
+        {loading ? <h1>Chargement</h1> : displayServices()}
       </div>
       <div>
         <div className={displayForm ? 'bo-hide-form' : ''}>
@@ -138,17 +144,25 @@ function NavigationForm({ navigation, validate }) {
             <div className='bo-article-form'>
               <form onSubmit={handleSubmit(onSubmit)} className={displayForm ? '' : 'bo-hide-form'}>
                 <input type="hidden" id="id" {...register('id')} />
-                <label htmlFor="label">
-                  <span className='bo-article-label'>Label</span>
-                  <input type="text" id="label" {...register('label')} className='bo-input-field'/>
+                <label htmlFor="titre">
+                  <span className='bo-article-label'>Titre</span>
+                  <input type="text" id="title" {...register('title')} className='bo-input-field'/>
                 </label>
-                <label htmlFor="link">
-                  <span className='bo-article-label'>Lien</span>
-                  <input type="text" id="link" {...register('link')} className='bo-input-field'/>
+                <label htmlFor="description">
+                  <span className='bo-article-label'>Description</span>
+                  <input type="text" id="description" {...register('description')} className='bo-input-field'/>
                 </label>
-                <label htmlFor="target">
-                  <span className='bo-article-label'>Target</span>
-                  <input type="text" id="target" {...register('target')} className='bo-input-field'/>
+                <label htmlFor="titleTag">
+                  <span className='bo-article-label'>Titre des Tags</span>
+                  <input type="text" id="titleTag" {...register('titleTag')} className='bo-input-field'/>
+                </label>
+                <label htmlFor="tag">
+                  <span className='bo-article-label'>Tags</span>
+                  <input type="text" id="tag" {...register('tag')} className='bo-input-field'/>
+                </label>
+                <label htmlFor="anchorId">
+                  <span className='bo-article-label'>Ancre</span>
+                  <input type="text" id="anchorId" {...register('anchorId')} className='bo-input-field'/>
                 </label>
                 <div className='bo-article-btn'>
                   <button onClick={() => { setDisplayForm(false); reset() }} className='bo-btn'>Annuler</button>
@@ -164,20 +178,22 @@ function NavigationForm({ navigation, validate }) {
   );
 }
 
-NavigationForm.propTypes = {
-  navigation: PropTypes.shape({
+ServiceForm.propTypes = {
+  service: PropTypes.shape({
     id: PropTypes.string,
     _id: PropTypes.string,
     userId: PropTypes.string,
-    label: PropTypes.string,
-    link: PropTypes.string,
-    target: PropTypes.string,
+    title: PropTypes.string,
+    description: PropTypes.string,
+    titleTag: PropTypes.string,
+    tag: PropTypes.string,
+    AnchorId: PropTypes.string,
   }),
   // validate: PropTypes.func,
 };
 
-NavigationForm.defaultProps = {
-  navigation: null,
+ServiceForm.defaultProps = {
+  service: null,
   // validate: null,
 };
-export default NavigationForm;
+export default ServiceForm;

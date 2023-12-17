@@ -4,6 +4,7 @@ const mongoose = require('mongoose');
 const presentationRoutes = require('./routes/presentation');
 const navigationRoutes = require('./routes/navigation');
 const competenceRoutes = require('./routes/competence');
+const serviceRoutes = require('./routes/service');
 const userRoutes = require('./routes/user');
 const path = require('path');
 require('dotenv').config();
@@ -31,6 +32,7 @@ app.use((req, res, next) => {
 app.use('/api', presentationRoutes);
 app.use('/api', navigationRoutes);
 app.use('/api', competenceRoutes);
+app.use('/api', serviceRoutes);
 app.use('/api/auth', userRoutes);
 app.use('/images', express.static(path.join(__dirname, 'controllers/images')));
 

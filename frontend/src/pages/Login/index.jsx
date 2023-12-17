@@ -5,7 +5,7 @@ import { useNavigate } from 'react-router-dom';
 import { API_ROUTES, APP_ROUTES } from '../../utils/constants';
 import { useUser } from '../../lib/customHooks';
 import { storeInLocalStorage } from '../../lib/common';
-// import { ReactComponent as Logo } from '../../images/Logo.svg';
+import '../../components/_Backoffice/Bo.css'
 
 function SignIn({ setUser }) {
   const navigate = useNavigate();
@@ -35,7 +35,7 @@ function SignIn({ setUser }) {
       } else {
         storeInLocalStorage(response.data.token, response.data.userId);
         // setUser(response.data);
-        navigate('/');
+        navigate('/formulaire-presentation');
       }
     } catch (err) {
       console.log(err);
@@ -70,69 +70,69 @@ function SignIn({ setUser }) {
     }
   };
   return (
-    <div>
-      {/* <Logo /> */}
-      <div>
-        {notification.message.length > 0 && <p>{notification.message}</p>}
-      </div>
-      <div>
-        <label htmlFor={email}>
-          <p>Adresse email</p>
-          <input
-            className=""
-            type="text"
-            name="email"
-            id="email"
-            value={email}
-            onChange={(e) => { setEmail(e.target.value); }}
-          />
-        </label>
-        <label htmlFor="password">
-          <p>Mot de passe</p>
-          <input
-            className="border-2 outline-none p-2 rounded-md"
-            type="password"
-            name="password"
-            id="password"
-            value={password}
-            onChange={(e) => { setPassword(e.target.value); }}
-          />
-        </label>
-        <div>
-          <button
-            type="submit"
-            className="
-            flex justify-center
-            p-2 rounded-md w-1/2 self-center
-            bg-gray-800  text-white hover:bg-gray-800"
-            onClick={signIn}
-          >
-            {isLoading ? <div className="" /> : null}
-            <span>
-              Se connecter
-            </span>
-          </button>
-          <span>OU</span>
-          <button
-            type="submit"
-            className="
-            flex justify-center
-            p-2 rounded-md w-1/2 self-center
-            bg-gray-800  text-white hover:bg-gray-800"
-            onClick={signUp}
-          >
-            {
-                isLoading
-                  ? <div className="mr-2 w-5 h-5 border-l-2 rounded-full animate-spin" /> : null
-              }
-            <span>
-              {'S\'inscrire'}
-            </span>
-          </button>
+    <section className='bo-connexion-section'>
+      <article className='bo-article-connexion'>
+        <div className='bo-connexion-h1'>
+          <h1 >Connexion</h1>
         </div>
+        <div>
+          {notification.message.length > 0 && <p>{notification.message}</p>}
+        </div>
+        <div>
+          <label htmlFor={email}>
+            <span className='bo-article-label'>Adresse email</span>
+            <input
+              className='bo-input-field'
+              type="text"
+              name="email"
+              id="email"
+              value={email}
+              onChange={(e) => { setEmail(e.target.value); }}
+            />
+          </label>
+          <label htmlFor="password">
+            <span className='bo-article-label'>Mot de passe</span>
+            <input
+              className='bo-input-field'
+              type="password"
+              name="password"
+              id="password"
+              value={password}
+              onChange={(e) => { setPassword(e.target.value); }}
+            />
+          </label>
+        </div>
+        <div className='bo-connexion-btn-block'>
+          <div>
+            <button
+              type="submit"
+              className='bo-btn'
+              onClick={signIn}
+            >
+              {isLoading ? <div className="" /> : null}
+              <span>
+                Se connecter
+              </span>
+            </button>
+            <span>OU</span>
+            <button
+              type="submit"
+              className='bo-btn'
+              onClick={signUp}
+            >
+              {
+                  isLoading
+                    ? <div className="mr-2 w-5 h-5 border-l-2 rounded-full animate-spin" /> : null
+                }
+              <span>
+                {'S\'inscrire'}
+              </span>
+            </button>
+          </div>
 
       </div>
-    </div>
+      </article>
+    </section>
   );
 }
 

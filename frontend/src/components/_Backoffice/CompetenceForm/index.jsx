@@ -45,56 +45,56 @@ function CompetenceForm({ competence, validate }) {
         <span class="material-symbols-outlined">drag_indicator</span>
       </div>
       <div>
-      <div id={_id} className='bo-article-competence'>
-        
-        <div className='bo-article-competence-details'>
-          <div><span className='bo-article-label'>Titre</span> <div className='bo-result-field'>{title}</div></div>
-          <div><span className='bo-article-label'>Description</span> <div className='bo-result-field'>{description}</div></div>
-          <div><span className='bo-article-label'>Ancre</span> <div className='bo-result-field'>{anchorId}</div></div>
-        </div>
-        <div className='bo-article-competence-preview'> 
-          <div><img src={imageUrl} className='bo-competence-img-preview'/></div>
-          <div><span className='bo-article-label'>Alt de l'image </span><div className='bo-result-field'>{alt}</div></div>
-        </div>
-      </div>
-      <div className='bo-article-btn'>
-        <button onClick={async () => {
-          // Récupération de l'_id d'une compétence
-          const objectId = { _id };
-          const imgUrlObject = { imageUrl };
-          const imgUrl = imgUrlObject.imageUrl;
-          setCurrentImgUrl(imgUrl);
-          const imgName = (imgUrl).split("/").slice(-1);
-          console.log('imgName:' + imgName);
-          await setPrez(objectId);
-          setDisplayForm(true)
-          setIsForUpdate(true)
-          setValue('id', _id);
-          setValue('title', title);
-          setValue('description', description);
-          setValue('anchorId', anchorId);
-          setValue('file', imageUrl );
-          setValue('alt', alt);
+        <div id={_id} className='bo-article-competence'>
           
-          console.log('currentImgUrl:' + currentImgUrl);
-          console.log('imageUrl:' + imageUrl);
-        }} className='bo-btn'>Modifier
-        </button>
+          <div className='bo-article-competence-details'>
+            <div><span className='bo-article-label'>Titre</span> <div className='bo-result-field'>{title}</div></div>
+            <div><span className='bo-article-label'>Description</span> <div className='bo-result-field'>{description}</div></div>
+            <div><span className='bo-article-label'>Ancre</span> <div className='bo-result-field'>{anchorId}</div></div>
+          </div>
+          <div className='bo-article-competence-preview'> 
+            <div><img src={imageUrl} className='bo-competence-img-preview'/></div>
+            <div><span className='bo-article-label'>Alt de l'image </span><div className='bo-result-field'>{alt}</div></div>
+          </div>
+        </div>
+        <div className='bo-article-btn'>
+          <button onClick={async () => {
+            // Récupération de l'_id d'une compétence
+            const objectId = { _id };
+            const imgUrlObject = { imageUrl };
+            const imgUrl = imgUrlObject.imageUrl;
+            setCurrentImgUrl(imgUrl);
+            const imgName = (imgUrl).split("/").slice(-1);
+            console.log('imgName:' + imgName);
+            await setPrez(objectId);
+            setDisplayForm(true)
+            setIsForUpdate(true)
+            setValue('id', _id);
+            setValue('title', title);
+            setValue('description', description);
+            setValue('anchorId', anchorId);
+            setValue('file', imageUrl );
+            setValue('alt', alt);
+            
+            console.log('currentImgUrl:' + currentImgUrl);
+            console.log('imageUrl:' + imageUrl);
+          }} className='bo-btn'>Modifier
+          </button>
 
-        <button onClick={async () => {
-          // Récupération de l'_id d'une compétence
-          const objectId = { _id };
-          await setPrez(objectId);
-          // Suppression d'une compétence
-          deleteCompetence(objectId._id);
-          if (submit === false) {
-            setSubmit(true);
-          } else {
-            setSubmit(false);
-          };
-        }} className='bo-btn'>Supprimer
-        </button>
-      </div>
+          <button onClick={async () => {
+            // Récupération de l'_id d'une compétence
+            const objectId = { _id };
+            await setPrez(objectId);
+            // Suppression d'une compétence
+            deleteCompetence(objectId._id);
+            if (submit === false) {
+              setSubmit(true);
+            } else {
+              setSubmit(false);
+            };
+          }} className='bo-btn'>Supprimer
+          </button>
+        </div>
       </div>
     </article>) : <h1>Il n'y a pas encore de compétence</h1>
   );
@@ -169,9 +169,11 @@ function CompetenceForm({ competence, validate }) {
         {loading ? <h1>Chargement</h1> : displayCompetences()}
       </div>
       <div>
-        <button className={displayForm ? 'bo-hide-form' : ''} onClick={() => setDisplayForm(true)} className='bo-btn'>Ajouter</button>
-        <article className='bo-article-preview' className={displayForm ? '' : 'bo-hide-form'}>
-          <div className='bo-article-form'>
+        <div className={displayForm ? 'bo-hide-form' : ''}>
+          <button onClick={() => setDisplayForm(true)} className='bo-btn-add'><span class="material-symbols-outlined">add_box</span></button>
+        </div> 
+        <article className={displayForm ? '' : 'bo-hide-form'}>
+          <div className='bo-article-form bo-article-preview'>
             <form onSubmit={handleSubmit(onSubmit)} >
               <input type="hidden" id="id" {...register('id')}/>
               <label htmlFor="title">
@@ -189,15 +191,15 @@ function CompetenceForm({ competence, validate }) {
               <span className='bo-article-label'>Image</span>
               <div>
                   {filePreview || currentImgUrl ? (
-                    <>
+                    <div className='bo-form-modify-img'>
                       <img src={filePreview ?? currentImgUrl} alt="preview" />
                       <span className='bo-article-label'>Modifier</span>
-                    </>
+                    </div>
                   ) : (
-                    <>
+                    <div className='bo-icon-and-label'>
                       <span class="material-symbols-outlined">image</span>
                       <span className='bo-article-label'>Ajouter une image</span>
-                    </>
+                    </div>
                   )}
 
               </div>
@@ -208,7 +210,10 @@ function CompetenceForm({ competence, validate }) {
                 <span className='bo-article-label'>Balise Alt</span>
                 <input type="text" id="alt" {...register('alt')} className='bo-input-field'/>
               </label>
-              <button type="submit" className='bo-btn'>Publier</button>
+              <div className='bo-article-btn'>
+                <button onClick={() => { setDisplayForm(false); reset() }} className='bo-btn'>Annuler</button>
+                <button type="submit" className='bo-btn'>Publier</button>
+              </div>
             </form>
           </div>
         </article>

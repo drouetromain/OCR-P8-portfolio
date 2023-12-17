@@ -46,13 +46,15 @@ function PresentationForm({ presentation, validate }) {
   // eslint-disable-next-line max-len
 
   const displayPresentations = () => (presentations ? presentations.map(({ _id, title, description, anchorId }) =>
-    <article key={_id} className='bo-article-preview'>
+    <article key={_id} className='bo-article-preview bo-article-preview-presentation'>
       <div>
         <div id={_id} className='bo-article-presentation'>
           <div><span className='bo-article-label'>Titre de la description</span><div className='bo-result-field'>{title}</div></div>
           <div><span className='bo-article-label'>Description</span><div className='bo-result-field'>{description}</div></div>
           <div><span className='bo-article-label'>Ancre</span><div className='bo-result-field'>{anchorId}</div></div>
         </div>
+      </div>
+      <div className='bo-article-btn'>
         <button onClick={async () => {
           // Récupération de l'_id d'une présentation
           const prezId = { _id };
@@ -63,7 +65,7 @@ function PresentationForm({ presentation, validate }) {
           setValue('title', title);
           setValue('description', description);
           setValue('anchorId', anchorId);
-        }} className='bo-btn'>Modifier
+          }} className='bo-btn'>Modifier
         </button>
 
         <button onClick={async () => {
@@ -77,9 +79,10 @@ function PresentationForm({ presentation, validate }) {
           } else {
             setSubmit(false);
           };
-        }} className='bo-btn'>Supprimer
+          }} className='bo-btn'>Supprimer
         </button>
-      </div>
+      </div>      
+      
     </article>) : <h1>Il n'y a pas encore de présentation</h1>
   );
 
@@ -137,9 +140,11 @@ function PresentationForm({ presentation, validate }) {
         {loading ? <h1>Chargement</h1> : displayPresentations()}
       </div>
       <div>
-        <button className={displayForm ? 'bo-hide-form' : ''} onClick={() => setDisplayForm(true)} className='bo-btn'>Ajouter</button>
-        <article className='bo-article-preview' className={displayForm ? '' : 'bo-hide-form'}>
-          <div className='bo-article-form'>
+        <div className={displayForm ? 'bo-hide-form' : ''}>
+          <button onClick={() => setDisplayForm(true)} className='bo-btn-add'><span class="material-symbols-outlined">add_box</span></button>
+        </div> 
+        <article className={displayForm ? '' : 'bo-hide-form'}>
+          <div className='bo-article-form bo-article-preview'>
             <form onSubmit={handleSubmit(onSubmit)} className={displayForm ? '' : 'bo-hide-form'}>
               <input type="hidden" id="id" {...register('id')} />
               <label htmlFor="title">
@@ -154,7 +159,10 @@ function PresentationForm({ presentation, validate }) {
                 <span className='bo-article-label'>Ancre</span>
                 <input type="text" id="anchorId" {...register('anchorId')} className='bo-input-field'/>
               </label>
-              <button type="submit" className='bo-btn'>Publier</button>
+              <div className='bo-article-btn'>
+                <button onClick={() => { setDisplayForm(false); reset() }} className='bo-btn'>Annuler</button>
+                <button type="submit" className='bo-btn'>Publier</button>
+              </div>
             </form>
           </div>
         </article>
