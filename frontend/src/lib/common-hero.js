@@ -1,12 +1,12 @@
 import axios from 'axios';
 import { API_ROUTES } from '../utils/constants';
 
-function formatServices(serviceArray) {
-  return serviceArray.map((service) => {
-    const newService = { ...service };
+function formatHeros(heroArray) {
+  return heroArray.map((hero) => {
+    const newHero = { ...hero };
     // eslint-disable-next-line no-underscore-dangle
-    newService.id = newService._id;
-    return newService;
+    newHero.id = newHero._id;
+    return newHero;
   });
 }
 
@@ -34,40 +34,40 @@ export async function getAuthenticatedUser() {
   }
 }
 
-export async function getServices() {
+export async function getHeros() {
   try {
     const response = await axios({
       method: 'GET',
-      url: `${API_ROUTES.SERVICES}`,
+      url: `${API_ROUTES.HEROS}`,
     });
     // eslint-disable-next-line array-callback-return
-    const services = formatServices(response.data);
-    return services;
+    const heros = formatHeros(response.data);
+    return heros;
   } catch (err) {
     console.error(err);
     return [];
   }
 }
 
-export async function getService(id) {
+export async function getHero(id) {
   try {
     const response = await axios({
       method: 'GET',
-      url: `${API_ROUTES.SERVICES}/${id}`,
+      url: `${API_ROUTES.HEROS}/${id}`,
     });
-    const service = response.data;
+    const hero = response.data;
     // eslint-disable-next-line no-underscore-dangle
-    service.id = service._id;
-    return service;
+    hero.id = hero._id;
+    return hero;
   } catch (err) {
     console.error(err);
     return null;
   }
 }
 
-export async function deleteService(id) {
+export async function deleteHero(id) {
   try {
-    await axios.delete(`${API_ROUTES.SERVICES}/${id}`, {
+    await axios.delete(`${API_ROUTES.HEROS}/${id}`, {
       headers: {
         Authorization: `Bearer ${localStorage.getItem('token')}`,
       },
@@ -79,26 +79,28 @@ export async function deleteService(id) {
   }
 }
 
-export async function addService(data) {
+export async function addHero(data) {
   const userId = localStorage.getItem('userId');
-  const service = {
+  const hero = {
     userId,
     title: data.title,
-    description: data.description,
-    titleTag: data.titleTag,
-    tags: data.tags,
+    subTitle: data.subTitle,
     anchorId: data.anchorId,
+    alt: data.alt,
   };
   const bodyFormData = new FormData();
-  bodyFormData.append('service', JSON.stringify(service));
+  bodyFormData.append('hero', JSON.stringify(hero));
+  bodyFormData.append('image', data.file[0]);
+  console.log(bodyFormData);
 
   try {
     return await axios({
       method: 'post',
-      url: `${API_ROUTES.SERVICES}`,
-      data: service,
+      url: `${API_ROUTES.HEROS}`,
+      data: bodyFormData,
       headers: {
         Authorization: `Bearer ${localStorage.getItem('token')}`,
+        "Content-Type": "multipart/form-data"
       },
     });
   } catch (err) {
@@ -107,37 +109,44 @@ export async function addService(data) {
   }
 }
 
-export async function updateService(data, id) {
+export async function updateHero(data, id) {
   const userId = localStorage.getItem('userId');
 
   let newData;
-  const service = {
+  const hero = {
     userId,
     title: data.title,
-    description: data.description,
-    titleTag: data.titleTag,
-    tags: data.tags,
+    subTitle: data.subTitle,
     anchorId: data.anchorId,
+    alt: data.alt,
   };
-  console.log(data.file?.[0]);
+  console.log(data.file?.[0]?.size);
   if (data.file?.[0]) {
     newData = new FormData();
-    newData.append('service', JSON.stringify(service));
-    newData.append('image', data.file[0]);
+    newData.append('hero', JSON.stringify(hero));
+    if (data.file?.[0]?.size > 0) {
+      newData.append('image', data.file[0]);
+    }
+    
+    console.log('j\'ai une image: ' + JSON.stringify(data.file[0]) );
+    console.log('j\'ai une image: ' + data.file[0] );
+    
   } else {
-    newData = { ...service };
+    newData = { ...hero };
+    console.log('je n\'ai rien changé');
   }
 
   try {
-    const newService = await axios({
+    const newHero = await axios({
       method: 'put',
-      url: `${API_ROUTES.SERVICES}/${id}`,
+      url: `${API_ROUTES.HEROS}/${id}`,
       data: newData,
       headers: {
         Authorization: `Bearer ${localStorage.getItem('token')}`,
+        "Content-Type": "multipart/form-data"
       },
     });
-    return newService;
+    return newHero;
   } catch (err) {
     console.error(err);
     return { error: true, message: err.message };

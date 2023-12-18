@@ -1,7 +1,7 @@
-import * as PropTypes from 'prop-types';
 import React, { useState, useEffect } from 'react';
 import { getPresentations } from '../../lib/common';
 import Presentation from '../Presentation';
+import '../../components/Hp.css'
 
 function Presentations() {
 
@@ -22,21 +22,11 @@ function Presentations() {
 
   const displayPresentations =   presentations ? presentations.map(({ _id, title, description, anchorId }) => <div key={_id} ><Presentation _id={_id} title={title} description={description} anchorId={anchorId} /></div>) : <h1>Vide</h1>;
   return (
-    <section>
+    <section className='hp-section-presentation'>
       {loading ? <h1>Chargement en cours...</h1> : displayPresentations}
 
     </section>
   );
 }
-
-// Presentations.propTypes = {
-//   presentations: PropTypes.shape({
-//     id: PropTypes.string,
-//     userId: PropTypes.string,
-//     title: PropTypes.string,
-//     description: PropTypes.string,
-//     anchorId: PropTypes.string,
-//   }).isRequired,
-// };
 
 export default Presentations;

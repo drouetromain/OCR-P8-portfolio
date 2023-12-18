@@ -1,0 +1,43 @@
+/* Navigation */
+
+.hp-nav-bar{
+    display: flex;
+    justify-content: flex-end;
+}
+
+.hp-nav-item{
+    padding: 10px;
+}
+
+.hp-nav-item a{
+    text-decoration: none;
+    color: #000;
+}
+
+/* Hero */
+
+.hp-hero-img{
+    width: 100%;
+    z-index: -1;
+}
+
+/* Présentation */
+
+.hp-section-presentation{
+    text-align: center;
+}
+
+/* Compétences */
+
+.hp-section-skills{
+    display: flex;
+    flex-direction: column;
+}
+
+.hp-section-skills h2{
+    text-align: center;
+}
+
+.hp-skills-block{
+    display: flex;
+}

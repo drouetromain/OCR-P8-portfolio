@@ -1,12 +1,13 @@
-function Hero() {
+function Hero({ title, anchorId, imageUrl, alt, subTitle }) {
     return (
-        <div>
-            <h1>Titre H1</h1>
-            <div>
-                Sous-Titre
-            </div>
+        <div id={anchorId}>
+            <img src={imageUrl} alt={alt} className="hp-hero-img"/>
+            <h1>{title}</h1>
+            <div>{subTitle}</div>
+            
+            
         </div>
     )
 }
 
-export default Hero
+export default Hero;

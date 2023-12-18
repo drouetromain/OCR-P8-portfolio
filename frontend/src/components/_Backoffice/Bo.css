@@ -11,10 +11,6 @@
     flex-direction: column;
 }
 
-.bo-section{
-    margin-left: 20px;
-}
-
 .bo-icon-and-label{
     display: flex;
     align-items: center;
@@ -68,6 +64,8 @@ body, button, input {
 .bo-section{
     display: flex;
     flex-direction: row-reverse;
+    justify-content: left;
+    margin-left: 20px;
 }
 
 .bo-drag-and-drop{
@@ -104,6 +102,17 @@ body, button, input {
     border: none;
     margin: 10px;
 }
+
+.bo-btn-add-in-form{
+    display: flex;
+    background-color: #56adde;
+    padding: 5px;
+    color: #fff;
+    border: none;
+    margin: 10px;
+    width: 25px;
+}
+
 .bo-input-field{
     border: solid 1px #bfbdbf;
     padding: 10px 30px 10px 30px !important;

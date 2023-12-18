@@ -3,6 +3,7 @@ const app = express();
 const mongoose = require('mongoose');
 const presentationRoutes = require('./routes/presentation');
 const navigationRoutes = require('./routes/navigation');
+const heroRoutes = require('./routes/hero');
 const competenceRoutes = require('./routes/competence');
 const serviceRoutes = require('./routes/service');
 const userRoutes = require('./routes/user');
@@ -31,6 +32,7 @@ app.use((req, res, next) => {
 
 app.use('/api', presentationRoutes);
 app.use('/api', navigationRoutes);
+app.use('/api', heroRoutes);
 app.use('/api', competenceRoutes);
 app.use('/api', serviceRoutes);
 app.use('/api/auth', userRoutes);

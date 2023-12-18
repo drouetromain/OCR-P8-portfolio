@@ -1,10 +1,11 @@
 function SkillCard({ title, anchorId, imageUrl, alt, description }) {
     return (
-        <div id={anchorId}>
+           <article id={anchorId}>
             <h3>{title}</h3>
             <img src={imageUrl} alt={alt} />
             <div>{description}</div>
-        </div>
+        </article> 
+        
     )
 }
 

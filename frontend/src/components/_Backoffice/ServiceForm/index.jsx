@@ -16,9 +16,36 @@ function ServiceForm({ service, validate }) {
   const [loading, setLoading] = useState(true);
   const [displayForm, setDisplayForm] = useState(false);
   const [submit, setSubmit] = useState(false);
+  
+  // Ajout d'un champs Tag dans le formulaire
+  const [inputFields, setInputFields] = useState([{ tag: '' }]);
+  const handleFormChange = (index, event) => {
+    let data = [...inputFields];
+    data[index][event.target.name] = event.target.value;
+    setInputFields(data);
+  };
+
+  const addFields = () => {
+    let newfield = { tag: ''};
+    setInputFields([...inputFields, newfield])
+    
+  }
+
+  const envoyerTag = (e) => {
+    e.preventDefault();
+    console.log(inputFields)
+  }
+
+  const removeFields = (index) => {
+    let data = [...inputFields];
+    data.splice(index, 1)
+    setInputFields(data)
+  }
 
   // Gestion du formulaire
   const navigate = useNavigate();
+  const tagsArray = JSON.stringify(inputFields);
+  console.log('tagsArray' + tagsArray);
   const {
     register, handleSubmit, reset, setValue
   } = useForm({
@@ -26,14 +53,14 @@ function ServiceForm({ service, validate }) {
       title: service?.title,
       description: service?.description,
       titleTag: service?.titleTag,
-      tag: service?.tag,
-      anchorId: service?.anchorId
+      tags: tagsArray,
+      anchorId: service?.anchorId,
     }), [service]),
+    
   });
-
   // eslint-disable-next-line max-len
 
-  const displayServices = () => (services ? services.map(({ _id, title, description, titleTag, tag, anchorId }) =>
+  const displayServices = () => (services ? services.map(({ _id, title, description, titleTag, tags, anchorId }) =>
     <article key={_id} className='bo-article-preview bo-article-preview-navigation'>
       <div className='bo-drag-and-drop'>
         <span class="material-symbols-outlined">drag_indicator</span>
@@ -44,7 +71,7 @@ function ServiceForm({ service, validate }) {
             <div><span className='bo-article-label'>Titre</span><div className='bo-result-field'>{title}</div></div>
             <div><span className='bo-article-label'>Description</span><div className='bo-result-field'>{description}</div></div>
             <div><span className='bo-article-label'>Titre des Tags</span><div className='bo-result-field'>{titleTag}</div></div>
-            <div><span className='bo-article-label'>Tags</span><div className='bo-result-field'>{tag}</div></div>
+            <div><span className='bo-article-label'>Tags</span><div className='bo-result-field'>{tags}</div></div>
             <div><span className='bo-article-label'>Ancre</span><div className='bo-result-field'>{anchorId}</div></div>
           </div>
         </div>
@@ -59,7 +86,7 @@ function ServiceForm({ service, validate }) {
             setValue('title', title);
             setValue('description', description);
             setValue('titleTag', titleTag);
-            setValue('tag', tag);
+            setValue('tags', tags);
             setValue('anchorId', anchorId);
             }} className='bo-btn'>Modifier
           </button>
@@ -130,6 +157,8 @@ function ServiceForm({ service, validate }) {
 
   }, [submit]);
 
+  
+
   return (
     <section className='bo-section'>
       <div>
@@ -142,7 +171,7 @@ function ServiceForm({ service, validate }) {
         <div className={displayForm ? '' : 'bo-hide-form'}>
           <article className='bo-article-preview'>
             <div className='bo-article-form'>
-              <form onSubmit={handleSubmit(onSubmit)} className={displayForm ? '' : 'bo-hide-form'}>
+              <form name="formulaireDynamique" onSubmit={handleSubmit(onSubmit)} className={displayForm ? '' : 'bo-hide-form'}>
                 <input type="hidden" id="id" {...register('id')} />
                 <label htmlFor="titre">
                   <span className='bo-article-label'>Titre</span>
@@ -156,9 +185,44 @@ function ServiceForm({ service, validate }) {
                   <span className='bo-article-label'>Titre des Tags</span>
                   <input type="text" id="titleTag" {...register('titleTag')} className='bo-input-field'/>
                 </label>
-                <label htmlFor="tag">
+                <div id="div1"></div>
+                <label htmlFor="tags">
                   <span className='bo-article-label'>Tags</span>
-                  <input type="text" id="tag" {...register('tag')} className='bo-input-field'/>
+                  {/* <div onClick={() => {
+
+                  }} className='bo-btn-add-in-form'><span class="material-symbols-outlined">add_box</span></div>
+                  
+                  <input type="text" id="tags" {...register('tags')} className='bo-input-field'/> */}
+                
+
+                  <div>
+                  {inputFields.map((input, index) => {
+                    return (
+                      <div key={index}>
+                        <input
+                          type="text"
+                          id="tags"
+                          // {...register('tag')} 
+                          name='tag'
+                          placeholder='Saisissez un tag'
+                          value={input.name}
+                          onChange={event => handleFormChange(index, event)}
+                          className='bo-input-field'
+                        />
+                        {/* <input
+                          name='age'
+                          placeholder='Age'
+                          value={input.age}
+                          onChange={event => handleFormChange(index, event)}
+                          className='bo-input-field'
+                        /> */}
+                        <button onClick={() => removeFields(index)} className='bo-btn'>Supprimer</button>
+                      </div>
+                    )
+                  })}
+                    <div onClick={addFields} className='bo-btn-add-in-form'><span class="material-symbols-outlined">add_box</span></div>
+                    <button onClick={envoyerTag}>Submit</button>
+                  </div>
                 </label>
                 <label htmlFor="anchorId">
                   <span className='bo-article-label'>Ancre</span>
@@ -166,7 +230,7 @@ function ServiceForm({ service, validate }) {
                 </label>
                 <div className='bo-article-btn'>
                   <button onClick={() => { setDisplayForm(false); reset() }} className='bo-btn'>Annuler</button>
-                  <button type="submit" className='bo-btn'>Publier</button>
+                  <button type="submit" className='bo-btn' onSubmit={envoyerTag}>Publier</button>
               </div>
               </form>
             </div>
@@ -175,6 +239,7 @@ function ServiceForm({ service, validate }) {
         
       </div>
     </section>
+    
   );
 }
 
@@ -186,7 +251,7 @@ ServiceForm.propTypes = {
     title: PropTypes.string,
     description: PropTypes.string,
     titleTag: PropTypes.string,
-    tag: PropTypes.string,
+    tags: PropTypes.string,
     AnchorId: PropTypes.string,
   }),
   // validate: PropTypes.func,
