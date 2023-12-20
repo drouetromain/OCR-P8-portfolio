@@ -4,6 +4,8 @@ import PresentationForm from '../../../components/_Backoffice/PresentationForm';
 import NavigationForm from '../../../components/_Backoffice/NavigationForm';
 import CompetenceForm from '../../../components/_Backoffice/CompetenceForm';
 import ServiceForm from '../../../components/_Backoffice/ServiceForm';
+import PortfolioForm from '../../../components/_Backoffice/PortfolioForm';
+import FilterForm from '../../../components/_Backoffice/FilterForm';
 import CvForm from '../../../components/_Backoffice/CvForm';
 import SocialmediaForm from '../../../components/_Backoffice/SocialmediaForm';
 import '../../../components/_Backoffice/Bo.css';
@@ -15,6 +17,7 @@ function BoPresentationForm() {
   const [displayPresentation, setDisplayPresentation] = useState(false);
   const [displayCompetence, setDisplayCompetence] = useState(false);
   const [displayService, setDisplayService] = useState(false);
+  const [displayPortfolio, setDisplayPortfolio] = useState(false);
   const [displayCv, setDisplayCv] = useState(false);
   const [displayFooter, setDisplayFooter] = useState(false);
   
@@ -23,43 +26,43 @@ function BoPresentationForm() {
       <nav className='bo-nav'>
         <div className='bo-nav-link'>
           <span class="material-symbols-outlined">menu</span>
-          <button onClick={() => (setDisplayMenu(true), setDisplayHero(false), setDisplayPresentation(false), setDisplayCompetence(false), setDisplayService(false), setDisplayCv(false), setDisplayFooter(false))} className='bo-nav-btn'>Navigation</button>
+          <button onClick={() => (setDisplayMenu(true), setDisplayHero(false), setDisplayPresentation(false), setDisplayCompetence(false), setDisplayService(false), setDisplayCv(false), setDisplayFooter(false), setDisplayPortfolio(false))} className='bo-nav-btn'>Navigation</button>
         </div>
         <div className='bo-nav-link'>
           <span class="material-symbols-outlined">subtitles</span>
-          <button onClick={() => (setDisplayHero(true), setDisplayMenu(false), setDisplayPresentation(false), setDisplayCompetence(false), setDisplayService(false), setDisplayCv(false), setDisplayFooter(false))} className='bo-nav-btn'>Hero</button>
+          <button onClick={() => (setDisplayHero(true), setDisplayMenu(false), setDisplayPresentation(false), setDisplayCompetence(false), setDisplayService(false), setDisplayCv(false), setDisplayFooter(false), setDisplayPortfolio(false))} className='bo-nav-btn'>Hero</button>
         </div>
         <div className='bo-nav-link'>
           <span class="material-symbols-outlined">co_present</span>
-          <button onClick={() => (setDisplayPresentation(true), setDisplayMenu(false), setDisplayHero(false), setDisplayCompetence(false), setDisplayService(false), setDisplayCv(false), setDisplayFooter(false))} className='bo-nav-btn'>Présentation</button>
+          <button onClick={() => (setDisplayPresentation(true), setDisplayMenu(false), setDisplayHero(false), setDisplayCompetence(false), setDisplayService(false), setDisplayCv(false), setDisplayFooter(false), setDisplayPortfolio(false))} className='bo-nav-btn'>Présentation</button>
         </div>
         <div className='bo-nav-link'>
           <span class="material-symbols-outlined">lightbulb</span>
-          <button onClick={() => (setDisplayCompetence(true), setDisplayMenu(false), setDisplayHero(false), setDisplayPresentation(false), setDisplayService(false), setDisplayCv(false), setDisplayFooter(false))} className='bo-nav-btn'>Compétences</button>
+          <button onClick={() => (setDisplayCompetence(true), setDisplayMenu(false), setDisplayHero(false), setDisplayPresentation(false), setDisplayService(false), setDisplayCv(false), setDisplayFooter(false), setDisplayPortfolio(false))} className='bo-nav-btn'>Compétences</button>
         </div>
         <div className='bo-nav-link'>
           <span class="material-symbols-outlined">accessibility_new</span>
-          <button onClick={() => (setDisplayService(true), setDisplayCompetence(false), setDisplayMenu(false), setDisplayHero(false), setDisplayPresentation(false), setDisplayCv(false), setDisplayFooter(false))} className='bo-nav-btn'>Services</button>
+          <button onClick={() => (setDisplayService(true), setDisplayCompetence(false), setDisplayMenu(false), setDisplayHero(false), setDisplayPresentation(false), setDisplayCv(false), setDisplayFooter(false), setDisplayPortfolio(false))} className='bo-nav-btn'>Services</button>
         </div>
         <div className='bo-nav-link'>
           <span class="material-symbols-outlined">menu_book</span>
-          <button onClick={() => (setDisplayCompetence(true), setDisplayMenu(false), setDisplayHero(false), setDisplayPresentation(false), setDisplayService(false), setDisplayCv(false), setDisplayFooter(false))} className='bo-nav-btn'>Portfolio</button>
+          <button onClick={() => (setDisplayPortfolio(true), setDisplayCompetence(false), setDisplayMenu(false), setDisplayHero(false), setDisplayPresentation(false), setDisplayService(false), setDisplayCv(false), setDisplayFooter(false))} className='bo-nav-btn'>Portfolio</button>
         </div>
         <div className='bo-nav-link'>
           <span class="material-symbols-outlined">workspace_premium</span>
-          <button onClick={() => (setDisplayCv(true), setDisplayMenu(false), setDisplayHero(false), setDisplayPresentation(false), setDisplayCompetence(false), setDisplayService(false), setDisplayFooter(false))} className='bo-nav-btn'>Mon CV</button>
+          <button onClick={() => (setDisplayCv(true), setDisplayMenu(false), setDisplayHero(false), setDisplayPresentation(false), setDisplayCompetence(false), setDisplayService(false), setDisplayFooter(false), setDisplayPortfolio(false))} className='bo-nav-btn'>Mon CV</button>
         </div>
         <div className='bo-nav-link'>
           <span class="material-symbols-outlined">contact_page</span>
-          <button onClick={() => (setDisplayCompetence(false), setDisplayMenu(false), setDisplayHero(false), setDisplayPresentation(false), setDisplayService(false), setDisplayCv(false), setDisplayFooter(false))} className='bo-nav-btn'>Contact</button>
+          <button onClick={() => (setDisplayCompetence(false), setDisplayMenu(false), setDisplayHero(false), setDisplayPresentation(false), setDisplayService(false), setDisplayCv(false), setDisplayFooter(false), setDisplayPortfolio(false))} className='bo-nav-btn'>Contact</button>
         </div>
         <div className='bo-nav-link'>
           <span class="material-symbols-outlined">footprint</span>
-          <button onClick={() => (setDisplayFooter(true), setDisplayCompetence(false), setDisplayMenu(false), setDisplayHero(false), setDisplayPresentation(false), setDisplayService(false), setDisplayCv(false))} className='bo-nav-btn'>Footer</button>
+          <button onClick={() => (setDisplayFooter(true), setDisplayCompetence(false), setDisplayMenu(false), setDisplayHero(false), setDisplayPresentation(false), setDisplayService(false), setDisplayCv(false), setDisplayPortfolio(false))} className='bo-nav-btn'>Footer</button>
         </div>
         <div className='bo-nav-link'>
         <span class="material-symbols-outlined">logout</span>
-          <button onClick={() => (setDisplayCompetence(false), setDisplayMenu(false), setDisplayHero(false), setDisplayPresentation(false), setDisplayService(false), setDisplayCv(false), setDisplayFooter(false))} className='bo-nav-btn'>Deconnexion</button>
+          <button onClick={() => (setDisplayCompetence(false), setDisplayMenu(false), setDisplayHero(false), setDisplayPresentation(false), setDisplayService(false), setDisplayCv(false), setDisplayFooter(false), setDisplayPortfolio(false))} className='bo-nav-btn'>Deconnexion</button>
         </div>
       </nav>
       <section className='bo-section'>
@@ -92,6 +95,14 @@ function BoPresentationForm() {
           <div className='bo-h2-icon'><span class="material-symbols-outlined">edit_square</span></div><h2>Gestion des services</h2>
           </div>
           <ServiceForm />
+        </div>
+        <div className={displayPortfolio ? '' : 'bo-hide-form'}>
+          <div className='bo-h2-block'>
+          <div className='bo-h2-icon'><span class="material-symbols-outlined">edit_square</span></div><h2>Gestion des portfolios</h2>
+          </div>
+          <PortfolioForm />
+          <div className='bo-h2-icon'><span class="material-symbols-outlined">edit_square</span></div><h2>Gestion des filtres</h2>
+          <FilterForm />
         </div>
         <div className={displayCv ? '' : 'bo-hide-form'}>
           <div className='bo-h2-block'>

@@ -6,10 +6,12 @@ const PortfolioSchema = mongoose.Schema({
     description: { type: String, required: true },
     imageUrl: { type: String, required: true },
     alt: { type: String, required: true },
-    filtres: [{
-        filtre: { type: String, required: true },
-    }],
-    anchorId: { type: String, required: true }
+    filters: { type: String, required: true },
+    // filters: [{
+    //     filter: { type: String, required: true },
+    // }],
+    anchorId: { type: String, required: true },
+    link: { type: String, required: true },
 });
 
 module.exports = mongoose.model('Portfolios', PortfolioSchema);
