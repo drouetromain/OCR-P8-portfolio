@@ -1,15 +1,21 @@
 import { Link } from 'react-router-dom'
-import SocialMedia from '../../components/SocialMedia/'
+import SocialMedias from '../../components/SocialMedias/'
 
 function Footer() {
     return (
-        <div>
-            <h2>Réseaux Sociaux</h2>
-            <SocialMedia />
-            <Link to="/">Propriété intellectuelle</Link>
-            <Link to="/">Mentions légales</Link>
-            <div>(c) Romain DROUET - 2023</div>
-        </div>
+        <section className='hp-article-footer'>
+            <h2 id="reseaux-sociaux" className='hp-h2'>Réseaux Sociaux</h2>
+            <article>
+                <SocialMedias />
+            </article>
+            <div className='hp-footer-links-block'>
+                <Link to="/" className='hp-footer-link'>Propriété intellectuelle</Link>
+                <Link to="/" className='hp-footer-link'>Mentions légales</Link>
+                <Link to="/signin" className='hp-footer-link'>Connexion</Link>
+            </div>
+            
+            <div className='hp-copyright'><sup>©</sup> Romain DROUET - 2023</div>
+        </section>
     )
 }
 

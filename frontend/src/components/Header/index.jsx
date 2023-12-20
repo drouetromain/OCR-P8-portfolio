@@ -2,7 +2,7 @@ import Navigation from '../Navigation'
 
 function Header() {
     return (
-        <div>
+        <div className='hp-div'>
             <Navigation />
         </div>
     )

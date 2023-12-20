@@ -19,7 +19,7 @@ function Heros() {
     getHerosList();
   }, []);
 
-    const displayHeros = heros ? heros.map(({ _id, title, anchorId, imageUrl, alt, subTitle }) => <div key={_id} ><Hero title={title} anchorId={anchorId} imageUrl={imageUrl} alt={alt} subTitle={subTitle} /></div>) : <h1>Vide</h1>;
+    const displayHeros = heros ? heros.map(({ _id, title, anchorId, imageUrl, alt, subTitle }) => <div key={_id} className='hp-div'><Hero title={title} anchorId={anchorId} imageUrl={imageUrl} alt={alt} subTitle={subTitle} /></div>) : <h1>Vide</h1>;
   return (
     <section>
       {loading ? <h1>Chargement en cours...</h1> : displayHeros}

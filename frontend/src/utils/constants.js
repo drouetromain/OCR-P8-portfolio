@@ -8,6 +8,8 @@ export const API_ROUTES = {
   PRESENTATIONS: `${API_URL}/api/presentations`,
   COMPETENCES: `${API_URL}/api/competences`,
   SERVICES: `${API_URL}/api/services`,
+  SOCIALMEDIAS: `${API_URL}/api/socialmedias`,
+  CVS: `${API_URL}/api/CVs`,
 };
 
 export const APP_ROUTES = {
@@ -20,5 +22,7 @@ export const APP_ROUTES = {
   PRESENTATIONS: '/formulaire-presentation',
   COMPETENCES: '/formulaire-presentation',
   SERVICES: '/formulaire-presentation',
+  CVS: '/formulaire-presentation',
+  SOCIALMEDIAS: '/formulaire-presentation',
   // UPDATE_BOOK: 'livre/modifier/:id',
 };

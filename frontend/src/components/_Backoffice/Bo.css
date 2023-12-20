@@ -4,6 +4,8 @@
 
 .bo-container{
     display: flex;
+    font-family: 'Lato', sans-serif;
+    font-family: 'Montserrat', sans-serif;
 }
 
 .bo-nav{
@@ -126,6 +128,7 @@ body, button, input {
     padding: 10px 30px 10px 30px !important;
     margin: 10px 0;
     color: #bfbdbf;
+    width: 300px;
 }
 
 .bo-article-label {
@@ -137,7 +140,7 @@ body, button, input {
 }
 .bo-article-preview {
     display: flex;
-    justify-content: space-between;
+    justify-content: flex-start;
     background-color: #fff;
     margin: 10px 20px 10px 0;
     border: solid 1px #eae8e8;
@@ -223,7 +226,7 @@ body, button, input {
 }
 
 .bo-competence-img-preview{
-    width: 50px;
+    width: 100px;
 }
 
 .bo-article-btn{

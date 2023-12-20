@@ -7,9 +7,9 @@ const heroCtrl = require('../controllers/hero');
 router.get('/heros', heroCtrl.getAllHeros);
 router.get('/heros/:id', heroCtrl.getOneHero);
 
-router.post('/heros', auth, customMulter(206, 260), heroCtrl.createHero);
+router.post('/heros', auth, customMulter(1920, 960), heroCtrl.createHero);
 
-router.put('/heros/:id', auth, customMulter(206, 260), heroCtrl.modifyHero);
+router.put('/heros/:id', auth, customMulter(1920, 960), heroCtrl.modifyHero);
 router.delete('/heros/:id', auth, heroCtrl.deleteHero);
 
 module.exports = router;

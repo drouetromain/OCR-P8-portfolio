@@ -3,15 +3,15 @@ import React, { useEffect, useMemo, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import * as PropTypes from 'prop-types';
 import { useNavigate } from 'react-router-dom';
-import { updateHero, addHero } from '../../../lib/common-hero';
-import { getHeros, deleteHero } from '../../../lib/common-hero';
+import { updateSocialmedia, addSocialmedia } from '../../../lib/common-socialmedia';
+import { getSocialmedias, deleteSocialmedia } from '../../../lib/common-socialmedia';
 import { useFilePreview } from '../../../lib/customHooks';
 import '../Bo.css'
 
-function HeroForm({ hero, validate }) {
+function SocialmediaForm({ socialmedia, validate }) {
 
-  // Récupération des compétences
-  const [heros, setHeros] = useState(null);
+  // Récupération des réseaux sociaux
+  const [socialmedias, setSocialmedias] = useState(null);
   const [isForUpdate, setIsForUpdate] = useState(false);
   const [prez, setPrez] = useState(null);
   const [loading, setLoading] = useState(true);
@@ -25,11 +25,11 @@ function HeroForm({ hero, validate }) {
     register, watch, handleSubmit, reset, setValue
   } = useForm({
     defaultValues: useMemo(() => ({
-      title: hero?.title,
-      subTitle: hero?.subTitle,
-      anchorId: hero?.anchorId,
-      alt: hero?.alt
-    }), [hero]),
+      title: socialmedia?.title,
+      description: socialmedia?.description,
+      anchorId: socialmedia?.anchorId,
+      alt: socialmedia?.alt
+    }), [socialmedia]),
   });
   const file = watch([]);
   console.log('file: ' + JSON.stringify(file));
@@ -38,7 +38,7 @@ function HeroForm({ hero, validate }) {
 
   // eslint-disable-next-line max-len
 
-  const displayHeros = () => (heros ? heros.map(({ _id, title, subTitle, anchorId, imageUrl, alt}) =>
+  const displaySocialmedias = () => (socialmedias ? socialmedias.map(({ _id, link, anchorId, imageUrl, alt}) =>
     <article key={_id} className='bo-article-preview'>
       <div className='bo-drag-and-drop'>
         <span class="material-symbols-outlined">drag_indicator</span>
@@ -47,8 +47,7 @@ function HeroForm({ hero, validate }) {
         <div id={_id} className='bo-article-competence'>
           
           <div className='bo-article-competence-details'>
-            <div><span className='bo-article-label'>Titre</span> <div className='bo-result-field'>{title}</div></div>
-            <div><span className='bo-article-label'>Sous-Titre</span> <div className='bo-result-field'>{subTitle}</div></div>
+            <div><span className='bo-article-label'>Lien</span> <div className='bo-result-field'>{link}</div></div>
             <div><span className='bo-article-label'>Ancre</span> <div className='bo-result-field'>{anchorId}</div></div>
           </div>
           <div className='bo-article-competence-preview'> 
@@ -58,7 +57,7 @@ function HeroForm({ hero, validate }) {
         </div>
         <div className='bo-article-btn'>
           <button onClick={async () => {
-            // Récupération de l'_id d'une compétence
+            // Récupération de l'_id d'un reseau social
             const objectId = { _id };
             const imgUrlObject = { imageUrl };
             const imgUrl = imgUrlObject.imageUrl;
@@ -69,8 +68,7 @@ function HeroForm({ hero, validate }) {
             setDisplayForm(true)
             setIsForUpdate(true)
             setValue('id', _id);
-            setValue('title', title);
-            setValue('subTitle', subTitle);
+            setValue('link', link);
             setValue('anchorId', anchorId);
             setValue('file', imageUrl );
             setValue('alt', alt);
@@ -81,11 +79,11 @@ function HeroForm({ hero, validate }) {
           </button>
 
           <button onClick={async () => {
-            // Récupération de l'_id d'une compétence
+            // Récupération de l'_id d'un réseau social
             const objectId = { _id };
             await setPrez(objectId);
-            // Suppression d'une compétence
-            deleteHero(objectId._id);
+            // Suppression d'un réseau social
+            deleteSocialmedia(objectId._id);
             if (submit === false) {
               setSubmit(true);
             } else {
@@ -95,7 +93,7 @@ function HeroForm({ hero, validate }) {
           </button>
         </div>
       </div>
-    </article>) : <h1>Il n'y a pas encore de compétence</h1>
+    </article>) : <h1>Il n'y a pas encore de réseau social</h1>
   );
 
 
@@ -107,10 +105,10 @@ function HeroForm({ hero, validate }) {
     if (!data.file[0]) {
       alert('Vous devez ajouter une image');
     }
-    // Je créé un nouveau hero
+    // Je créé un nouveau réseau social
     if (!isForUpdate) {
-      const newHero = await addHero(data);
-      if (!newHero.error) {
+      const newSocialmedia = await addSocialmedia(data);
+      if (!newSocialmedia.error) {
         // validate(true);
         if (submit === false) {
           setSubmit(true);
@@ -123,13 +121,13 @@ function HeroForm({ hero, validate }) {
         console.log('validation ajouté');
         console.log(submit);
       } else {
-        alert(newHero.message);
+        alert(newSocialmedia.message);
       }
     } else {
       console.log(JSON.stringify(data));
       
-      const updatedHero = await updateHero(data, data.id);
-      if (!updatedHero.error) {
+      const updatedSocialmedia = await updateSocialmedia(data, data.id);
+      if (!updatedSocialmedia.error) {
         if (submit === false) {
           setSubmit(true);
         } else {
@@ -141,7 +139,7 @@ function HeroForm({ hero, validate }) {
         reset();
         console.log('validation updaté');
       } else {
-        alert(updatedHero.message);
+        alert(updatedSocialmedia.message);
       }
     }
   };
@@ -149,23 +147,23 @@ function HeroForm({ hero, validate }) {
 
   // MAJ des présentations (front)
   useEffect(() => {
-    async function displayHeros() {
-      const data = await getHeros();
+    async function displaySocialmedias() {
+      const data = await getSocialmedias();
       if (data) {
-        setHeros(data);
+        setSocialmedias(data);
         setLoading(false);
         console.log('data: ' + JSON.stringify(data));
       }
     }
-    displayHeros();
-    displayHeros();
+    displaySocialmedias();
+    displaySocialmedias();
 
   }, [submit]);
 
   return (
     <section className='bo-section'>
       <div>
-        {loading ? <h1>Chargement</h1> : displayHeros()}
+        {loading ? <h1>Chargement</h1> : displaySocialmedias()}
       </div>
       <div>
         <div className={displayForm ? 'bo-hide-form' : ''}>
@@ -175,13 +173,9 @@ function HeroForm({ hero, validate }) {
           <div className='bo-article-form bo-article-preview'>
             <form onSubmit={handleSubmit(onSubmit)} >
               <input type="hidden" id="id" {...register('id')}/>
-              <label htmlFor="title">
-                <span className='bo-article-label'>Titre</span>
-                <input type="text" id="title" {...register('title')} className='bo-input-field'/>
-              </label>
-                <label htmlFor="subTitle">
-                <span className='bo-article-label'>Sous-Titre</span>
-                <input type="text" id="subTitle" {...register('subTitle')} className='bo-input-field'/>
+              <label htmlFor="link">
+                <span className='bo-article-label'>Lien</span>
+                <input type="text" id="link" {...register('link')} className='bo-input-field'/>
               </label>
               <label htmlFor="anchorId">
                 <span className='bo-article-label'>Ancre</span>
@@ -221,13 +215,12 @@ function HeroForm({ hero, validate }) {
   );
 }
 
-HeroForm.propTypes = {
-  hero: PropTypes.shape({
+SocialmediaForm.propTypes = {
+  socialmedia: PropTypes.shape({
     id: PropTypes.string,
     _id: PropTypes.string,
     userId: PropTypes.string,
-    title: PropTypes.string,
-    subTitle: PropTypes.string,
+    link: PropTypes.string,
     anchorId: PropTypes.string,
     imageUrl: PropTypes.string,
     alt: PropTypes.string,
@@ -235,8 +228,8 @@ HeroForm.propTypes = {
   // validate: PropTypes.func,
 };
 
-HeroForm.defaultProps = {
-  hero: null,
+SocialmediaForm.defaultProps = {
+  socialmedia: null,
   // validate: null,
 };
-export default HeroForm;
+export default SocialmediaForm;

@@ -20,7 +20,7 @@ function Presentations() {
     getPresentationsList();
   }, []);
 
-  const displayPresentations =   presentations ? presentations.map(({ _id, title, description, anchorId }) => <div key={_id} ><Presentation _id={_id} title={title} description={description} anchorId={anchorId} /></div>) : <h1>Vide</h1>;
+  const displayPresentations =   presentations ? presentations.map(({ _id, title, description, anchorId }) => <div key={_id} className='hp-div'><Presentation _id={_id} title={title} description={description} anchorId={anchorId} /></div>) : <h1>Vide</h1>;
   return (
     <section className='hp-section-presentation'>
       {loading ? <h1>Chargement en cours...</h1> : displayPresentations}

@@ -4,24 +4,24 @@ import Presentations from '../../components/Presentations/'
 import Skills from '../../components/Skills/'
 import Services from '../../components/Services/'
 import Portfolio from '../../components/Portfolio/'
-import Cv from '../../components/Cv/'
+import Cvs from '../../components/Cvs/'
 import Contact from '../../components/Contact/'
 import Footer from '../../components/Footer/'
 import '../../components/Hp.css'
 
 function Home() {
     return (
-        <div>
+        <main className='hp-main'>
             <Header />
             <Heros />
             <Presentations />
             <Skills />
             <Services />
             <Portfolio />
-            <Cv />
+            <Cvs />
             <Contact />
             <Footer />
-      </div>
+      </main>
     )
   }
   

@@ -6,6 +6,8 @@ const navigationRoutes = require('./routes/navigation');
 const heroRoutes = require('./routes/hero');
 const competenceRoutes = require('./routes/competence');
 const serviceRoutes = require('./routes/service');
+const cvRoutes = require('./routes/cv');
+const socialmediaRoutes = require('./routes/socialmedia');
 const userRoutes = require('./routes/user');
 const path = require('path');
 require('dotenv').config();
@@ -35,6 +37,8 @@ app.use('/api', navigationRoutes);
 app.use('/api', heroRoutes);
 app.use('/api', competenceRoutes);
 app.use('/api', serviceRoutes);
+app.use('/api', socialmediaRoutes);
+app.use('/api', cvRoutes);
 app.use('/api/auth', userRoutes);
 app.use('/images', express.static(path.join(__dirname, 'controllers/images')));
 
