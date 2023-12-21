@@ -233,3 +233,10 @@ body, button, input {
     display: flex;
     justify-content: end;
 }
+
+/* Services */
+
+.bo-article-tags{
+    display: flex;
+    flex-direction: column;
+}

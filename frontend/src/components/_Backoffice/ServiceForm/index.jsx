@@ -18,34 +18,35 @@ function ServiceForm({ service, validate }) {
   const [submit, setSubmit] = useState(false);
   
   // Ajout d'un champs Tag dans le formulaire
-  const [inputFields, setInputFields] = useState([{ tag: '' }]);
+  const [tagFields, setTagFields] = useState([{ tag: '' }]);
   const handleFormChange = (index, event) => {
-    let data = [...inputFields];
+    let data = [...tagFields];
     data[index][event.target.name] = event.target.value;
-    setInputFields(data);
+    setTagFields(data);
+    console.log(data);
   };
 
-  const addFields = () => {
+  const addTagFields = () => {
     let newfield = { tag: ''};
-    setInputFields([...inputFields, newfield])
+    setTagFields([...tagFields, newfield])
     
   }
 
   const envoyerTag = (e) => {
     e.preventDefault();
-    console.log(inputFields)
+    console.log(tagFields)
   }
 
-  const removeFields = (index) => {
-    let data = [...inputFields];
+  const removeTagFields = (index) => {
+    let data = [...tagFields];
     data.splice(index, 1)
-    setInputFields(data)
+    setTagFields(data)
   }
 
   // Gestion du formulaire
   const navigate = useNavigate();
-  const tagsArray = JSON.stringify(inputFields);
-  console.log('tagsArray' + tagsArray);
+  const tagsArray = JSON.stringify(tagFields);
+  console.log('service: ' + service);
   const {
     register, handleSubmit, reset, setValue
   } = useForm({
@@ -53,7 +54,7 @@ function ServiceForm({ service, validate }) {
       title: service?.title,
       description: service?.description,
       titleTag: service?.titleTag,
-      tags: tagsArray,
+      tags: service?.tags,
       anchorId: service?.anchorId,
     }), [service]),
     
@@ -71,7 +72,7 @@ function ServiceForm({ service, validate }) {
             <div><span className='bo-article-label'>Titre</span><div className='bo-result-field'>{title}</div></div>
             <div><span className='bo-article-label'>Description</span><div className='bo-result-field'>{description}</div></div>
             <div><span className='bo-article-label'>Titre des Tags</span><div className='bo-result-field'>{titleTag}</div></div>
-            <div><span className='bo-article-label'>Tags</span><div className='bo-result-field'>{tags}</div></div>
+            <div><span className='bo-article-label'>Tags</span><div className='bo-article-tags'>{tags.map((tag, index) => <span key={index} className='bo-result-field'>{ tag.tag }</span>)}</div></div>
             <div><span className='bo-article-label'>Ancre</span><div className='bo-result-field'>{anchorId}</div></div>
           </div>
         </div>
@@ -86,8 +87,9 @@ function ServiceForm({ service, validate }) {
             setValue('title', title);
             setValue('description', description);
             setValue('titleTag', titleTag);
-            setValue('tags', tags);
             setValue('anchorId', anchorId);
+            setTagFields(tags)
+
             }} className='bo-btn'>Modifier
           </button>
           <button onClick={async () => {
@@ -116,6 +118,8 @@ function ServiceForm({ service, validate }) {
 
   const onSubmit = async (data) => {
     // Je créé une nouveau service
+    data.tags = tagFields;
+    console.log(data);
     if (!isForUpdate) {
       const newService = await addService(data);
       if (!newService.error) {
@@ -196,7 +200,7 @@ function ServiceForm({ service, validate }) {
                 
 
                   <div>
-                  {inputFields.map((input, index) => {
+                  {tagFields.map((input, index) => {
                     return (
                       <div key={index}>
                         <input
@@ -205,7 +209,7 @@ function ServiceForm({ service, validate }) {
                           // {...register('tag')} 
                           name='tag'
                           placeholder='Saisissez un tag'
-                          value={input.name}
+                          value={input.tag}
                           onChange={event => handleFormChange(index, event)}
                           className='bo-input-field'
                         />
@@ -216,12 +220,12 @@ function ServiceForm({ service, validate }) {
                           onChange={event => handleFormChange(index, event)}
                           className='bo-input-field'
                         /> */}
-                        <button onClick={() => removeFields(index)} className='bo-btn'>Supprimer</button>
+                        <button onClick={() => removeTagFields(index)} className='bo-btn'>Supprimer</button>
                       </div>
                     )
                   })}
-                    <div onClick={addFields} className='bo-btn-add-in-form'><span class="material-symbols-outlined">add_box</span></div>
-                    <button onClick={envoyerTag}>Submit</button>
+                    <div onClick={addTagFields} className='bo-btn-add-in-form'><span class="material-symbols-outlined">add_box</span></div>
+                    {/* <button onClick={envoyerTag}>Submit</button> */}
                   </div>
                 </label>
                 <label htmlFor="anchorId">

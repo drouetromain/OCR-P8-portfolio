@@ -107,6 +107,29 @@
     height: 100px;
 }
 
+/* Portfolio */
+
+.hp-portfolio-img-container{
+    width: 400px;
+    height: 225px;
+}
+
+.hp-portfolio-img{
+    width: 400px;
+    margin-left: auto;
+    margin-right: auto;
+    filter: grayscale(1);
+}
+
+.hp-portfolio-img:hover{
+    filter: grayscale(0);
+}
+.hp-portfolio-card {
+    margin: 20px;
+    text-align: center;
+    width: 400px;
+}
+
 /* CV  */
 
 .hp-cv-block{

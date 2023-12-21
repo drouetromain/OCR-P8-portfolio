@@ -23,7 +23,7 @@ function Skills() {
     const displayCompetences = competences ? competences.map(({ _id, title, anchorId, imageUrl, alt, description }) => <div key={_id} className='hp-skill-card hp-div'><SkillCard title={title} anchorId={anchorId} imageUrl={imageUrl} alt={alt} description={description} /></div>) : <h1>Vide</h1>;
   return (
     <section className='hp-section-skills'>
-      <h2 className='hp-h2'>Compétences techniques</h2>
+      <h2 className='hp-h2' id="competences">Compétences techniques</h2>
       <article className='hp-skills-block'>
         {loading ? <h1>Chargement en cours...</h1> : displayCompetences}
       </article>

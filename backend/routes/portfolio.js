@@ -8,9 +8,9 @@ router.get('/portfolios', portfolioCtrl.getAllPortfolios);
 router.get('/portfolios/:id', portfolioCtrl.getOnePortfolio);
 
 
-router.post('/portfolios', auth, customMulter(206, 260), portfolioCtrl.createPortfolio);
+router.post('/portfolios', auth, customMulter(400, 225), portfolioCtrl.createPortfolio);
 
-router.put('/portfolios/:id', auth, customMulter(206, 260), portfolioCtrl.modifyPortfolio);
+router.put('/portfolios/:id', auth, customMulter(400, 225), portfolioCtrl.modifyPortfolio);
 router.delete('/portfolios/:id', auth, portfolioCtrl.deletePortfolio);
 
 module.exports = router;

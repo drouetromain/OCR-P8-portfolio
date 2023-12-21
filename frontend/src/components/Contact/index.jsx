@@ -1,7 +1,7 @@
 function Contact() {
     return (
         <article className="hp-article-contact">
-            <h2 className="hp-h2">Contact</h2>
+            <h2 className="hp-h2" id="contact">Contact</h2>
             <div className="hp-div">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</div>
             <form action="/ma-page-de-traitement" method="post" className="hp-contact-form">
                 <label htmlFor="firstname">Prénom&nbsp;:</label>
