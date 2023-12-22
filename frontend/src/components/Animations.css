@@ -1,0 +1,403 @@
+/* Animations */
+
+/* Animation Crochet  */
+.content {
+position: absolute;
+top: 100px;
+left: 200px;
+transform: translate(-50%, -50%);
+font-size: 35px;
+line-height: 40px;
+font-family: 'Lato', sans-serif;
+color: #ecf0f1;
+height: 160px;
+overflow:hidden;
+}
+
+.visible {
+font-weight:600;
+overflow:hidden;
+height:40px;
+padding:0 40px;
+
+&:before {
+    content:'[';
+    left: 0;
+    line-height:40px;
+}
+&:after {
+    content:']';
+    position:absolute;
+    right: 0;
+    line-height:40px;
+}
+&:after, &:before {
+    position:absolute;
+    top:0;
+    color:#16a085;
+    font-size:42px;
+    -webkit-animation-name: opacity;
+    -webkit-animation-duration: 2s;
+    -webkit-animation-iteration-count: infinite;
+    animation-name: opacity;
+    animation-duration: 2s;
+    animation-iteration-count: infinite;
+
+}
+}
+
+p {
+display:inline;
+float:left;
+margin:0;
+}
+
+ul {
+margin-top:0;
+padding-left:110px;
+text-align:left;
+list-style:none;
+-webkit-animation-name: change;
+-webkit-animation-duration: 6s;
+-webkit-animation-iteration-count: infinite;
+animation-name: change;
+animation-duration: 6s;
+animation-iteration-count: infinite;
+}
+
+ul li {
+line-height:40px;
+margin:0;
+}
+
+@-webkit-keyframes opacity {
+0%, 100% {opacity:0;}
+50% {opacity:1;}
+}
+
+@-webkit-keyframes change {
+0%, 12%, 100% {transform:translateY(0);}
+17%,29% {transform:translateY(-25%);}
+34%,46% {transform:translateY(-50%);}
+51%,63% {transform:translateY(-75%);}
+68%,80% {transform:translateY(-50%);}
+85%,97% {transform:translateY(-25%);}
+}
+
+@keyframes opacity {
+0%, 100% {opacity:0;}
+50% {opacity:1;}
+}
+
+@keyframes change {
+0%, 12%, 100% {transform:translateY(0);}
+17%,29% {transform:translateY(-25%);}
+34%,46% {transform:translateY(-50%);}
+51%,63% {transform:translateY(-75%);}
+68%,80% {transform:translateY(-50%);}
+85%,97% {transform:translateY(-25%);}
+}
+
+
+/* Animation Changement couleur titres */
+
+.wrap{width:100%;}
+.gradient-text{
+background: linear-gradient(to right, #03a9f4,#f441a5,#ffeb3b,#03a9f4);
+background-size: 200% 200%;
+animation: rainbow 4s ease-in-out infinite;
+background-clip: text;
+-webkit-background-clip:text;
+text-align:center;
+transition: color .2s ease-in-out;
+text-transform:uppercase;
+}
+.gradient-text:hover{
+color:rgba(0,0,0,0);
+}
+@keyframes rainbow { 
+0%{background-position:left}
+50%{background-position:right}
+100%{background-position:left}
+}
+
+/* Animation Changement couleur cadre Services */
+
+.border-color-effect:hover {
+animation: line 3s infinite ease-in-out;
+}
+
+@keyframes line {
+0% {
+border-image: linear-gradient(to right, darkorchid, darkorchid) 1;
+}
+50% {
+border-image: linear-gradient(to left, yellow, darkorchid) 1;
+}
+100% {
+border-image: linear-gradient(to right, red, darkorchid) 1;
+}
+}
+
+/* Ciel étoilé */ 
+@keyframes move-background {
+    from {
+        -webkit-transform: translate3d(0px, 0px, 0px);
+    }
+    to { 
+        -webkit-transform: translate3d(1000px, 0px, 0px);
+    }
+}
+@-webkit-keyframes move-background {
+from {
+        -webkit-transform: translate3d(0px, 0px, 0px);
+    }
+    to { 
+        -webkit-transform: translate3d(1000px, 0px, 0px);
+    }
+}
+
+@-moz-keyframes move-background {    
+    from {
+        -webkit-transform: translate3d(0px, 0px, 0px);
+    }
+    to { 
+        -webkit-transform: translate3d(1000px, 0px, 0px);
+    }
+}
+
+    @-webkit-keyframes move-background {
+    from {
+        -webkit-transform: translate3d(0px, 0px, 0px);
+    }
+    to { 
+        -webkit-transform: translate3d(1000px, 0px, 0px);
+    }
+}
+
+.background-container{
+    /* position: fixed; */
+    top: 0;
+    left:0;
+    bottom: 0;
+    right: 0;
+    height: 960px;
+}
+
+.stars {
+background: black url(https://s3-us-west-2.amazonaws.com/s.cdpn.io/1231630/stars.png) repeat;
+position: absolute;
+top: 0;
+bottom: 0;
+left: 0;
+right: 0;
+display: block;
+z-index: -3;
+height: 960px;
+}
+
+.twinkling{
+    width:10000px;
+    height: 100%;
+    background: transparent url("https://s3-us-west-2.amazonaws.com/s.cdpn.io/1231630/twinkling.png") repeat;
+    background-size: 1000px 1000px;
+    position: fixed;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    z-index: -1;
+    
+    -moz-animation:move-background 70s linear infinite;
+-ms-animation:move-background 70s linear infinite;
+-o-animation:move-background 70s linear infinite;
+-webkit-animation:move-background 70s linear infinite;
+animation:move-background 70s linear infinite;
+    
+}  
+
+/* Bouton HP */
+
+.hp-btn{
+text-decoration: none;
+color: #fff;
+padding: 10px;
+width: 250px;
+border: 1px solid #fff;
+border-radius: 25px;
+margin: 40px 10px 0 10px;
+
+transform: translate(0%, 0%);
+box-sizing: border-box;
+/* background: linear-gradient(90deg,#03a9f4,#f441a5,#ffeb3b,#03a9f4); */
+background-size: 400%;
+cursor: pointer;
+}
+
+.hp-btn:hover{
+color: #fff;
+/* background-color: #fff;
+opacity: 0.6; */
+
+animation: animate 8s linear infinite;
+}
+
+@keyframes animate
+{
+0%
+{
+    background-position: 0%;
+}
+100%
+{
+    background-position: 400%;
+}
+}
+
+.hp-btn:before
+{
+content: '';
+position: absolute;
+top: -5px;
+left: -5px;
+bottom: -5px;
+right: -5px;
+z-index: -1;
+background: linear-gradient(90deg,#03a9f4,#f441a5,#ffeb3b,#03a9f4);
+background-size: 400%;
+border-radius: 40px;
+opacity: 0;
+transition: 1s;
+}
+
+.hp-btn:hover:before
+{
+filter: blur(20px);
+opacity: 1;
+animation: animate 8s linear infinite;
+}
+
+/* Bouton "Envoyer" Contact Form */
+
+.hp-contact-form-button{
+text-decoration: none;
+color: #fff;
+padding: 10px;
+width: 250px;
+border: 1px solid #fff;
+border-radius: 25px;
+margin: 40px 10px 0 10px;
+background-color: transparent;
+font-size: 20px;
+font-family: 'Lato', sans-serif;
+font-family: 'Montserrat', sans-serif;
+font-family: 'Red Hat Display', sans-serif; 
+
+transform: translate(0%, 0%);
+box-sizing: border-box;
+/* background: linear-gradient(90deg,#03a9f4,#f441a5,#ffeb3b,#03a9f4); */
+background-size: 400%;
+cursor: pointer;
+}
+
+.hp-contact-form-button:hover{
+color: #fff;
+
+animation: animate 8s linear infinite;
+}
+
+@keyframes animate
+{
+0%
+{
+    background-position: 0%;
+}
+100%
+{
+    background-position: 400%;
+}
+}
+
+.hp-contact-form-button:before
+{
+content: '';
+position: absolute;
+top: -5px;
+left: -5px;
+bottom: -5px;
+right: -5px;
+z-index: -1;
+background: linear-gradient(90deg,#03a9f4,#f441a5,#ffeb3b,#03a9f4);
+background-size: 400%;
+border-radius: 40px;
+opacity: 0;
+transition: 1s;
+}
+
+.hp-contact-form-button:hover:before
+{
+filter: blur(20px);
+opacity: 1;
+animation: animate 8s linear infinite;
+}
+
+
+
+
+/* Glow Effect */
+.hp-footer-socialmedia img:hover{
+    background-color: transparent;
+    }
+
+
+.glow-effect{
+text-decoration: none;
+background-color: transparent;
+transform: translate(0%, 0%);
+box-sizing: border-box;
+cursor: pointer;
+border: none;
+}
+
+
+.glow-effect:hover{
+color: #fff;
+background-color: transparent;
+animation: animate 8s linear infinite;
+}
+
+@keyframes animate
+{
+0%
+{
+    background-position: 0%;
+}
+100%
+{
+    background-position: 400%;
+}
+}
+
+
+.glow-effect:before
+{
+content: '';
+position: absolute;
+top: -5px;
+left: -5px;
+bottom: -5px;
+right: -5px;
+z-index: -1;
+background: linear-gradient(90deg,#03a9f4,#f441a5,#ffeb3b,#03a9f4);
+background-size: 400%;
+border-radius: 40px;
+opacity: 0;
+transition: 1s;
+}
+
+
+.glow-effect:hover:before
+{
+filter: blur(20px);
+opacity: 1;
+animation: animate 8s linear infinite;
+}

@@ -8,9 +8,11 @@ import Cvs from '../../components/Cvs/'
 import Contact from '../../components/Contact/'
 import Footer from '../../components/Footer/'
 import '../../components/Hp.css'
+import '../../components/Animations.css'
 
 function Home() {
-    return (
+  return (
+      
         <main className='hp-main'>
             <Heros />
             <Presentations />

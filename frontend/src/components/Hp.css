@@ -1,10 +1,12 @@
 /* Global CSS */
 
+body{
+    background-color: #000;
+}
 .hp-main{
     font-family: 'Lato', sans-serif;
     font-family: 'Montserrat', sans-serif;
     font-family: 'Red Hat Display', sans-serif;
-    background-color: #000;
     color: #fff;
 }
 
@@ -24,23 +26,19 @@
     font-size: 20px;
 }
 
-.hp-btn{
-    text-decoration: none;
-    color: #fff;
-    padding: 10px;
-    width: 250px;
-    border: 1px solid #fff;
-    border-radius: 25px;
-    margin: 10px;
+.hp-description{
+    margin: 0 10%;
 }
 
-.hp-btn:hover{
-    color: #000;
-    background-color: #fff;
-    opacity: 0.6;
+.h-separator{
+    width: 10%;
 }
-
 /* Navigation */
+
+.hp-nav-block{
+    display: flex;
+    justify-content: flex-end;
+}
 
 .hp-nav-bar{
     display: flex;
@@ -61,7 +59,8 @@
 
 .hp-hero-img{
     width: 100%;
-    z-index: -1;
+    position: absolute;
+    z-index: 1;
 }
 
 /* Présentation */
@@ -105,6 +104,37 @@
 
 .hp-skillcard-img{
     height: 100px;
+}
+
+/* Services */
+
+.hp-services-block{
+    display: flex;
+    justify-content: center;
+}
+
+.hp-services-card{
+    border: 2px solid;
+    margin: 0 20px;
+    padding-bottom: 20px;
+    width: 350px;
+}
+
+.hp-services-description{
+    margin-bottom: 20px;
+}
+
+.hp-services-tags-block{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.hp-services-tag{
+    padding: 5px 20px;
+    border: 1px solid;
+    border-radius: 25px;
+    margin: 0 10px 10px 10px;
 }
 
 /* Portfolio */
@@ -157,29 +187,7 @@
     display: flex;
     flex-direction: column;
     width: 800px;
-    margin-left: auto;
-    margin-right: auto;
-}
-
-.hp-contact-form-button{
-    text-decoration: none;
-    color: #fff;
-    padding: 10px;
-    width: 250px;
-    border: 1px solid #fff;
-    border-radius: 25px;
-    margin: 10px;
-    background-color: transparent;
-    font-size: 20px;
-    font-family: 'Lato', sans-serif;
-    font-family: 'Montserrat', sans-serif;
-    font-family: 'Red Hat Display', sans-serif; 
-}
-
-.hp-contact-form-button:hover{
-    color: #000;
-    background-color: #fff;
-    opacity: 0.6;
+    margin: 50px auto 0 auto;
 }
 
 .hp-contact-form label{
@@ -205,6 +213,22 @@
     font-family: 'Montserrat', sans-serif;
     font-family: 'Red Hat Display', sans-serif; 
 }
+
+.hp-form-name-fields{
+    display: flex;
+}
+
+.hp-form-half-field{
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+
+.hp-form-submit-button{
+    display: flex;
+    justify-content: flex-end;
+}
+
 /* Footer */
 
 .hp-footer-socialmedias{

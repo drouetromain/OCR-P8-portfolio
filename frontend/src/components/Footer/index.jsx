@@ -4,7 +4,7 @@ import SocialMedias from '../../components/SocialMedias/'
 function Footer() {
     return (
         <section className='hp-article-footer'>
-            <h2 id="reseaux-sociaux" className='hp-h2'>Réseaux Sociaux</h2>
+            <h2 id="reseaux-sociaux" className='hp-h2 gradient-text'>Réseaux Sociaux</h2>
             <article>
                 <SocialMedias />
             </article>

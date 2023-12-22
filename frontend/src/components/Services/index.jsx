@@ -20,11 +20,14 @@ function Services() {
     getServicesList();
   }, []);
 
-  const displayServices =   services ? services.map(({ _id, title, description, anchorId }) => <div key={_id} className='hp-div'><ServiceCard _id={_id} title={title} description={description} anchorId={anchorId} /></div>) : <h1>Vide</h1>;
+    const displayServices = services ? services.map(({ _id, title, description, anchorId, tags }) => <div key={_id} className='hp-div hp-services-card border-color-effect'><ServiceCard _id={_id} title={title} description={description} anchorId={anchorId} tags={tags} /></div>) : <h1>Vide</h1>;
   return (
     <section className='hp-section-presentation'>
-        <h2 className='hp-h2' id="services">Services proposés</h2>
-        {loading ? <h1>Chargement en cours...</h1> : displayServices}
+        <h2 className='hp-h2 gradient-text' id="services">Services proposés</h2>
+        <div className='hp-services-block'>
+            {loading ? <h1>Chargement en cours...</h1> : displayServices}      
+        </div>
+        
 
     </section>
   );
