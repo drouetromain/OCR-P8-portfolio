@@ -35,7 +35,7 @@ function SignIn({ setUser }) {
       } else {
         storeInLocalStorage(response.data.token, response.data.userId);
         // setUser(response.data);
-        navigate('/formulaire-presentation');
+        navigate('/admin');
       }
     } catch (err) {
       console.log(err);
@@ -112,20 +112,6 @@ function SignIn({ setUser }) {
               {isLoading ? <div className="" /> : null}
               <span>
                 Se connecter
-              </span>
-            </button>
-            <span>OU</span>
-            <button
-              type="submit"
-              className='bo-btn'
-              onClick={signUp}
-            >
-              {
-                  isLoading
-                    ? <div className="mr-2 w-5 h-5 border-l-2 rounded-full animate-spin" /> : null
-                }
-              <span>
-                {'S\'inscrire'}
               </span>
             </button>
           </div>

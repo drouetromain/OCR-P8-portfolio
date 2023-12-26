@@ -1,11 +1,19 @@
 function SkillCard({ title, anchorId, imageUrl, alt, description }) {
+    const colorImageUrl = 'http://localhost:4000/images/color-' + imageUrl.split('/').slice(-1);
+    // color-http://localhost:4000/images/logo-html-1703229710433.webp
     return (
         <div id={anchorId}>
             <div>
                 <h3 className="hp-h3">{title}</h3>
-                <div className="hp-skillcard-img-container">
-                    <img src={imageUrl} alt={alt} className="hp-skillcard-img"/>
+                <div className="panel">
+                    <div class="front card hp-skillcard-img-container">
+                        <img src={imageUrl} alt={alt} className="hp-skillcard-img"/>
+                    </div>
+                    <div class="back card hp-skillcard-img-container">
+                        <img src={colorImageUrl} alt={alt} className="hp-skillcard-img"/>
+                    </div>
                 </div>
+
             </div>
             
             <div>{description}</div>

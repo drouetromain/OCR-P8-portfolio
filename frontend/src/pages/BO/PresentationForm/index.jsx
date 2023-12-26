@@ -21,6 +21,12 @@ function BoPresentationForm() {
   const [displayCv, setDisplayCv] = useState(false);
   const [displayFooter, setDisplayFooter] = useState(false);
   
+  const token = localStorage.getItem('token');
+
+  if (token === null) {
+    console.log('Je ne suis pas connecté');
+    window.location.href = 'https://www.romaindrouet.com';
+  }
   return (
     <div className='bo-container'>
       <nav className='bo-nav'>

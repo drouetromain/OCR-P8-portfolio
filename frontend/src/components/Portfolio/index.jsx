@@ -21,16 +21,27 @@ function Portfolio({ title, anchorId, imageUrl, alt, description, filters }) {
                   
                 >
                 {isHover ?
-                    <div
-                        className="hp-portfolio-img-container"
-                        style={{ 
-                            backgroundImage: `url(${imageUrl})`,
-                            filter: `grayscale(0)`,
-                        }}
-                    >
-                        <h3 className="hp-h3">{title}</h3>
-                        <div>{description}</div>  
-                    </div> :
+                    <div>
+                       <div
+                            className="hp-portfolio-img-container"
+                            style={{ 
+                                backgroundImage: `url(${imageUrl})`,
+                                filter: `grayscale(0)`,
+                            }}
+                        >
+
+                        </div>
+                        <div id="app">
+                            <div class="ui-slide-in">
+                                <div class="text-wrapper">
+                                    <h3 class="line"><span class="black">{title}</span></h3>
+                                    <div class="line"><span class="thin">{description}</span></div>
+                                </div>
+                            </div>
+                        </div> 
+                    </div>
+                    
+                    :
                     <div
                         className="hp-portfolio-img-container"
                         style={{ 
@@ -41,6 +52,8 @@ function Portfolio({ title, anchorId, imageUrl, alt, description, filters }) {
                         {/* <h3 className="hp-h3">{title}</h3>
                         <div>{description}</div> */}
                     </div>
+                    
+                    
                 }
                 </div>
             </div>

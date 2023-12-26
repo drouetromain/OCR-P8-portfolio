@@ -19,7 +19,7 @@ root.render(
               <Route path="/" element={<Home />} />
               <Route path="*" element={<Error />} />
               <Route path="/signin" element={<SignIn />} />
-              <Route path="/formulaire-presentation" element={<BoPresentationForm />} />
+              <Route path="/admin" element={<BoPresentationForm />} />
               <Route path="/presentation" element={<Presentation />} />
             </Routes>
         </Router>

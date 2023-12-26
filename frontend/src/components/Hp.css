@@ -36,8 +36,9 @@ body{
 /* Navigation */
 
 .hp-nav-block{
-    display: flex;
-    justify-content: flex-end;
+    position: absolute;
+    z-index: 3;
+    right: 3%;
 }
 
 .hp-nav-bar{
@@ -81,8 +82,10 @@ body{
 }
 
 .hp-skills-block{
-    display: flex;
-    justify-content: center;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    margin-left: auto;
+    margin-right: auto;
 }
 
 .hp-skills-block h3{
@@ -268,4 +271,76 @@ body{
 .hp-copyright{
     font-size: 15px;
     margin-bottom: 20px;
+}
+
+@media (max-width: 768px) { 
+
+    .hp-h2{
+        font-size: 40px;
+    }
+
+    .hp-h3{
+        font-size: 30px;
+    }
+
+    /* Compétences */
+    .hp-skills-block{
+        display: flex;
+        flex-direction: column;
+    }
+
+    /* Services */
+
+    .hp-services-block{
+        flex-direction: column;
+    }
+
+    .hp-services-card{
+        margin: 0 auto 20px auto;
+    }
+
+    /* Portfolio  */
+
+    .hp-portfolio-img-container{
+        width: 100%;
+        background-size: contain;
+        background-repeat: no-repeat;
+    }
+
+    .hp-portfolio-img-container {
+        height: 190px;
+    }
+
+    .hp-portfolio-card {
+        width: 300px;
+    }
+
+    .ui-slide-in {
+        width: 290px;
+    }
+
+    /* Contact */
+
+    .hp-contact-form{
+        width: 90%;
+    }
+
+    .hp-form-name-fields{
+        flex-direction: column;
+    }
+
+    .hp-form-submit-button{
+        justify-content: center;
+    }
+
+    /* Footer  */
+
+    .hp-footer-links-block{
+        justify-content: center;
+    }
+
+    .hp-footer-socialmedia {
+        margin-left: 10px;
+        margin-right: 10px;
+    }
 }

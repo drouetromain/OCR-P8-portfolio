@@ -6,7 +6,6 @@ import { useNavigate } from 'react-router-dom';
 import { updateCompetence, addCompetence } from '../../../lib/common-competence';
 import { getCompetences, deleteCompetence } from '../../../lib/common-competence';
 import { useFilePreview } from '../../../lib/customHooks';
-import addFileIMG from '../../../images/add_file.png';
 import '../Bo.css'
 
 function CompetenceForm({ competence, validate }) {
@@ -188,7 +187,7 @@ function CompetenceForm({ competence, validate }) {
                 <span className='bo-article-label'>Ancre</span>
                 <input type="text" id="anchorId" {...register('anchorId')} className='bo-input-field'/>
               </label>
-              <span className='bo-article-label'>Image</span>
+              <span className='bo-article-label'>Image N&B</span>
               <div>
                   {filePreview || currentImgUrl ? (
                     <div className='bo-form-modify-img'>
@@ -201,7 +200,6 @@ function CompetenceForm({ competence, validate }) {
                       <span className='bo-article-label'>Ajouter une image</span>
                     </div>
                   )}
-
               </div>
               <label htmlFor="file">
                 <input {...register('file')} type="file" id="file" name='file' />
