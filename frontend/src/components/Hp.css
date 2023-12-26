@@ -123,8 +123,12 @@ body{
     width: 350px;
 }
 
+.hp-services-card .hp-h3{
+    margin: 10px;
+}
+
 .hp-services-description{
-    margin-bottom: 20px;
+    margin: 0 10px 20px 10px;
 }
 
 .hp-services-tags-block{

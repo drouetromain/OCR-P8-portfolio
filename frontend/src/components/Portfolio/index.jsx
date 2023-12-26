@@ -32,10 +32,10 @@ function Portfolio({ title, anchorId, imageUrl, alt, description, filters }) {
 
                         </div>
                         <div id="app">
-                            <div class="ui-slide-in">
-                                <div class="text-wrapper">
-                                    <h3 class="line"><span class="black">{title}</span></h3>
-                                    <div class="line"><span class="thin">{description}</span></div>
+                            <div className="ui-slide-in">
+                                <div className="text-wrapper">
+                                    <h3 className="line"><span class="black">{title}</span></h3>
+                                    <div className="line"><span class="thin">{description}</span></div>
                                 </div>
                             </div>
                         </div> 
