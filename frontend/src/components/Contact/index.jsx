@@ -1,8 +1,8 @@
 function Contact() {
     return (
         <article className="hp-article-contact">
-            <h2 className="hp-h2 gradient-text" id="contact">Contact</h2>
-            <div className="hp-div hp-description">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</div>
+            <h2 className="hp-h2 gradient-text" id="contact">Contactez-moi</h2>
+            <div className="hp-div hp-description">Une idée ? Un projet ? N'hésitez-pas à me contacter pour toutes demandes d'informations ou devis.</div>
             <form action="/ma-page-de-traitement" method="post" className="hp-contact-form">
                 <div className="hp-form-name-fields">
                     <div className="hp-form-half-field">
