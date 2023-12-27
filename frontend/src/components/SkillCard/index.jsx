@@ -1,6 +1,5 @@
 function SkillCard({ title, anchorId, imageUrl, alt, description }) {
     const colorImageUrl = 'https://api.romaindrouet.com/images/color-' + imageUrl.split('/').slice(-1);
-    // color-http://localhost:4000/images/logo-html-1703229710433.webp
     return (
         <div id={anchorId}>
             <div>

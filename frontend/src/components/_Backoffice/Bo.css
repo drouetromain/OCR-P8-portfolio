@@ -214,7 +214,7 @@ body, button, input {
 .bo-article-competence-preview {
     display: flex;
     flex-direction: column;
-    justify-content: end;
+    justify-content: flex-end;
     padding: 10px;
     color: #bfbdbf;
 }
@@ -231,7 +231,7 @@ body, button, input {
 
 .bo-article-btn{
     display: flex;
-    justify-content: end;
+    justify-content: flex-end;
 }
 
 /* Services */

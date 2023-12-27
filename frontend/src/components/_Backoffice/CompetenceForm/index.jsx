@@ -2,7 +2,6 @@
 import React, { useEffect, useMemo, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import * as PropTypes from 'prop-types';
-import { useNavigate } from 'react-router-dom';
 import { updateCompetence, addCompetence } from '../../../lib/common-competence';
 import { getCompetences, deleteCompetence } from '../../../lib/common-competence';
 import { useFilePreview } from '../../../lib/customHooks';
@@ -20,7 +19,6 @@ function CompetenceForm({ competence, validate }) {
   const [currentImgUrl, setCurrentImgUrl] = useState(null);
 
   // Gestion du formulaire
-  const navigate = useNavigate();
   const {
     register, watch, handleSubmit, reset, setValue
   } = useForm({
@@ -32,8 +30,6 @@ function CompetenceForm({ competence, validate }) {
     }), [competence]),
   });
   const file = watch([]);
-  console.log('file: ' + JSON.stringify(file));
-
   const [filePreview] = useFilePreview(file);
 
   // eslint-disable-next-line max-len
@@ -52,7 +48,7 @@ function CompetenceForm({ competence, validate }) {
             <div><span className='bo-article-label'>Ancre</span> <div className='bo-result-field'>{anchorId}</div></div>
           </div>
           <div className='bo-article-competence-preview'> 
-            <div><img src={imageUrl} className='bo-competence-img-preview'/></div>
+            <div><img src={imageUrl} alt={alt} className='bo-competence-img-preview'/></div>
             <div><span className='bo-article-label'>Alt de l'image </span><div className='bo-result-field'>{alt}</div></div>
           </div>
         </div>

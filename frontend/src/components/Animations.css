@@ -1044,4 +1044,11 @@ transform: rotateY(0deg);
   .sp-container .hp-hero-subtitle.frame-1{
     margin-top: 20%;
   }
+
+  .hp-hero-subtitle-block{
+    position: absolute;
+    bottom: 10px;
+    right: 10px;
+    height: auto;
+  }
 }
