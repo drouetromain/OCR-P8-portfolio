@@ -26,6 +26,7 @@ function Contact() {
                 </div>
                 
             </form>
+            
         </article>
     )
 }

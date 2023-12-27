@@ -16,6 +16,7 @@ body{
 
 .hp-h2{
     font-size: 40px;
+    margin: 50px 0;
 }
 
 .hp-h3{
@@ -289,6 +290,22 @@ body{
         font-size: 30px;
     }
 
+    /* Navigation */
+
+    .hp-nav-bar{
+        flex-direction: column;
+    }
+
+    .hp-nav-block{
+        position: relative;
+        width: fit-content;
+        background-color: #fff;
+    }
+
+    .hp-nav-item a{
+        color: #000;
+    }
+
     /* Compétences */
     .hp-skills-block{
         display: flex;
@@ -300,7 +317,7 @@ body{
     .hp-services-block{
         flex-direction: column;
     }
-
+    
     .hp-services-card{
         margin: 0 auto 20px auto;
     }

@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 
-function Portfolio({ title, anchorId, imageUrl, alt, description, filters }) {
+function Portfolio({ title, anchorId, imageUrl, alt, description, filters, link }) {
 
     const [isHover, setIsHover] = useState(false);
     console.log('isHover:' + isHover)
@@ -15,22 +15,23 @@ function Portfolio({ title, anchorId, imageUrl, alt, description, filters }) {
         <div id={anchorId}>
             <div id={filters}>
                 <div
-                    // className={isHover ? "hp-portfolio-img-container" : ""}
                     onMouseEnter={handleMouseEnter}
                     onMouseLeave={handleMouseLeave}
                   
                 >
                 {isHover ?
                     <div>
-                       <div
-                            className="hp-portfolio-img-container"
-                            style={{ 
-                                backgroundImage: `url(${imageUrl})`,
-                                filter: `grayscale(0)`,
-                            }}
-                        >
-
-                        </div>
+                        <a href={link} target="_blank" rel="noreferrer">
+                            <div
+                                className="hp-portfolio-img-container"
+                                style={{ 
+                                    backgroundImage:  `https://api.romaindrouet.comurl(${imageUrl})`,
+                                    filter: `grayscale(0)`,
+                                }}
+                            >
+                            </div>
+                        </a>
+                        
                         <div id="app">
                             <div className="ui-slide-in">
                                 <div className="text-wrapper">
@@ -49,8 +50,6 @@ function Portfolio({ title, anchorId, imageUrl, alt, description, filters }) {
                             filter: `grayscale(1)`
                         }}
                     >
-                        {/* <h3 className="hp-h3">{title}</h3>
-                        <div>{description}</div> */}
                     </div>
                     
                     

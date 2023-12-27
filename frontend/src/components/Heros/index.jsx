@@ -19,8 +19,6 @@ function Heros() {
     getHerosList();
   }, []);
 
-  const displayHeros = heros ? heros.map(({ _id, title, anchorId, imageUrl, alt, subTitle }) => <div key={_id} className='hp-div'><div><Header /></div><Hero title={title} anchorId={anchorId} imageUrl={imageUrl} alt={alt} subTitle={subTitle} /></div>) : <h1>Vide</h1>;
-  
   // Animation sur le Titre
   document.onload = function () {
     console.log('Le dom est chargé')
@@ -29,12 +27,39 @@ function Heros() {
   if (loading === true) {
     console.log('Le loading est terminé')
     function whenLoaded() {
-      
       console.log('animation chargée');
+      let el = document.getElementById('js-hero-img');
+      // inclu les padding, border & scrollbar.
+      console.log(el.offsetHeight);
+      let imgHeight = el.offsetHeight;
     }
-    setTimeout(whenLoaded, 3000);
+    setTimeout(whenLoaded, 1000);
     
   }
+
+  const displayHeros = heros ? heros.map(({ _id, title, anchorId, imageUrl, alt, subTitle, imgHeight }) =>
+    <div key={_id} className='hp-div'>
+      <div className='content'>
+        <div className='visible'>
+            <p>
+          
+            </p>
+            <ul>
+            <li>ROMAIN</li>
+            <li>DROUET</li>
+            <li>.COM</li>
+            {/* <li>CSS</li> */}
+            </ul>
+        </div>
+      </div>
+      <div>
+        <span class="material-symbols-outlined">menu</span>
+        <Header />
+      </div>
+      <Hero title={title} anchorId={anchorId} imageUrl={imageUrl} alt={alt} subTitle={subTitle} imgHeight={imgHeight} />
+    </div>) : <h1>Vide</h1>;
+  
+  
   return (
     <section>
       
