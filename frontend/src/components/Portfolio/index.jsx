@@ -46,7 +46,7 @@ function Portfolio({ title, anchorId, imageUrl, alt, description, filters, link 
                     <div
                         className="hp-portfolio-img-container"
                         style={{ 
-                            backgroundImage: `url(${imageUrl})`,
+                            backgroundImage: `url(https://api.romaindrouet.com${imageUrl})`,
                             filter: `grayscale(1)`
                         }}
                     >
