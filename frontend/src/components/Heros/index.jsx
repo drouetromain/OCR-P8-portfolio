@@ -6,6 +6,7 @@ import Header from '../../components/Header/';
 function Heros() {
   // Récupération des présentations
   const [heros, setHeros] = useState(null);
+  const [isOpen, setIsOpen] = useState(false);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
@@ -53,20 +54,25 @@ function Heros() {
         </div>
       </div>
       <div>
-        <button className='hp-header-icon-burger-menu' onClick={
-          console.log('jai  cliqué')
-        }>
+        <button className='hp-header-icon-burger-menu' onClick={() => {
+          setIsOpen(true);
+          console.log('isOpen:' + isOpen)
+        }} >
           <span className="material-symbols-outlined">menu</span>
         </button>
+        <div className={
+          isOpen ? "hp-display-nav" : "hp-not-displayed-nav"
+        }>
+          <Header  />
+        </div>
         
-        <Header />
       </div>
       <Hero title={title} anchorId={anchorId} imageUrl={imageUrl} alt={alt} subTitle={subTitle} imgHeight={imgHeight} />
     </div>) : <h1>Vide</h1>;
   
   
   return (
-    <section>
+    <section className='hp-section-hero'>
       
       {loading ? <h1>Chargement en cours...</h1> : displayHeros}
     </section>

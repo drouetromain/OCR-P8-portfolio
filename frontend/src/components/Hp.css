@@ -296,6 +296,10 @@ body{
 
     /* Hero  */
 
+    .hp-section-hero{
+        height: 400px;
+    }
+
     .hp-hero-h1-block{
         background: url(https://api.romaindrouet.com/images/hero-drouet-romain-1200x1600px.webp);
         background-size: cover;
@@ -317,6 +321,14 @@ body{
         border: none;
     }
 
+    .hp-display-nav{
+        display: block;
+    }
+
+    .hp-not-displayed-nav{
+        display: none;
+    }
+
     .hp-nav-bar{
         flex-direction: column;
     }
@@ -325,7 +337,10 @@ body{
         position: relative;
         width: fit-content;
         background-color: #fff;
-        display: none;
+        border-top: solid 3px #16a085;;
+        border-bottom: solid 3px #16a085;
+        margin-top: 20px;
+        
     }
 
     .hp-nav-item a{
