@@ -6,10 +6,10 @@ function SkillCard({ title, anchorId, imageUrl, alt, description }) {
             <div>
                 <h3 className="hp-h3">{title}</h3>
                 <div className="panel">
-                    <div class="front card hp-skillcard-img-container">
+                    <div className="front card hp-skillcard-img-container">
                         <img src={`https://api.romaindrouet.com${imageUrl}`} alt={alt} className="hp-skillcard-img"/>
                     </div>
-                    <div class="back card hp-skillcard-img-container">
+                    <div className="back card hp-skillcard-img-container">
                         <img src={colorImageUrl} alt={alt} className="hp-skillcard-img"/>
                     </div>
                 </div>

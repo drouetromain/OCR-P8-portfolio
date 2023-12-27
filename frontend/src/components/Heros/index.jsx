@@ -53,7 +53,12 @@ function Heros() {
         </div>
       </div>
       <div>
-        <span class="material-symbols-outlined">menu</span>
+        <button className='hp-header-icon-burger-menu' onClick={
+          console.log('jai  cliqué')
+        }>
+          <span className="material-symbols-outlined">menu</span>
+        </button>
+        
         <Header />
       </div>
       <Hero title={title} anchorId={anchorId} imageUrl={imageUrl} alt={alt} subTitle={subTitle} imgHeight={imgHeight} />

@@ -3,7 +3,6 @@ import React, { useState } from 'react';
 function Portfolio({ title, anchorId, imageUrl, alt, description, filters, link }) {
 
     const [isHover, setIsHover] = useState(false);
-    console.log('isHover:' + isHover)
     const handleMouseEnter = () => {
       setIsHover(true);
      };

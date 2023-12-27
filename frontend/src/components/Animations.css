@@ -1011,6 +1011,8 @@ transform: rotateY(0deg);
   .content{
     position: relative;
     z-index: 3;
+    top: 20px;
+    height: auto;
   }
 
   /* Hero  */

@@ -38,6 +38,10 @@ body{
 }
 /* Navigation */
 
+.hp-header-icon-burger-menu{
+    display: none;
+}
+
 .hp-nav-block{
     position: absolute;
     z-index: 3;
@@ -298,10 +302,20 @@ body{
     }
 
     .hp-hero-img{
-        /* display: none; */
+        display: none;
     }
     
     /* Navigation */
+
+    .hp-header-icon-burger-menu{
+        display: block;
+        position: absolute;
+        top: 10px;
+        z-index: 11;
+        background: transparent;
+        color: #fff;
+        border: none;
+    }
 
     .hp-nav-bar{
         flex-direction: column;
@@ -311,6 +325,7 @@ body{
         position: relative;
         width: fit-content;
         background-color: #fff;
+        display: none;
     }
 
     .hp-nav-item a{
