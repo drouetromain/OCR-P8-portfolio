@@ -290,6 +290,17 @@ body{
         font-size: 30px;
     }
 
+    /* Hero  */
+
+    .hp-hero-h1-block{
+        background: url(https://api.romaindrouet.com/images/hero-drouet-romain-1200x1600px.webp);
+        background-size: cover;
+    }
+
+    .hp-hero-img{
+        /* display: none; */
+    }
+    
     /* Navigation */
 
     .hp-nav-bar{

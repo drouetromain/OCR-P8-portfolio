@@ -24,18 +24,18 @@ function Heros() {
     console.log('Le dom est chargé')
   }
 
-  if (loading === true) {
-    console.log('Le loading est terminé')
-    function whenLoaded() {
-      console.log('animation chargée');
-      let el = document.getElementById('js-hero-img');
-      // inclu les padding, border & scrollbar.
-      console.log(el.offsetHeight);
-      let imgHeight = el.offsetHeight;
-    }
-    setTimeout(whenLoaded, 1000);
+  // if (loading === true) {
+  //   console.log('Le loading est terminé')
+  //   function whenLoaded() {
+  //     console.log('animation chargée');
+  //     let el = document.getElementById('js-hero-img');
+  //     // inclu les padding, border & scrollbar.
+  //     console.log(el.offsetHeight);
+  //     let imgHeight = el.offsetHeight;
+  //   }
+  //   setTimeout(whenLoaded, 3000);
     
-  }
+  // }
 
   const displayHeros = heros ? heros.map(({ _id, title, anchorId, imageUrl, alt, subTitle, imgHeight }) =>
     <div key={_id} className='hp-div'>
