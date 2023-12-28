@@ -55,7 +55,7 @@ function PortfolioForm({ portfolio, validate }) {
             <div><span className='bo-article-label'>Filtres</span> <div className='bo-result-field'>{filters}</div></div>
           </div>
           <div className='bo-article-competence-preview'> 
-            <div><img src={imageUrl} className='bo-competence-img-preview'/></div>
+            <div><img src={`https://api.romaindrouet.com${imageUrl}`} alt={alt} className='bo-competence-img-preview'/></div>
             <div><span className='bo-article-label'>Alt de l'image </span><div className='bo-result-field'>{alt}</div></div>
             <div><span className='bo-article-label'>lien de l'image </span><div className='bo-result-field'>{link}</div></div>
           </div>

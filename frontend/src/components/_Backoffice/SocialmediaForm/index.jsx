@@ -51,7 +51,7 @@ function SocialmediaForm({ socialmedia, validate }) {
             <div><span className='bo-article-label'>Ancre</span> <div className='bo-result-field'>{anchorId}</div></div>
           </div>
           <div className='bo-article-competence-preview'> 
-            <div><img src={imageUrl} className='bo-competence-img-preview'/></div>
+            <div><img src={`https://api.romaindrouet.com${imageUrl}`} alt={alt} className='bo-competence-img-preview'/></div>
             <div><span className='bo-article-label'>Alt de l'image </span><div className='bo-result-field'>{alt}</div></div>
           </div>
         </div>
