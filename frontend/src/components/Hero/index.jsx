@@ -22,7 +22,7 @@ function Hero({ title, anchorId, imageUrl, alt, subTitle }) {
                 
             </div>
             </div>
-            <img src='https://api.romaindrouet.com/images/hero-drouet-romain-1920px-couleurs-transparent-1703172051320.webp' alt={alt} className="hp-hero-img" />
+            {/* <img src='https://api.romaindrouet.com/images/hero-drouet-romain-1920px-couleurs-transparent-1703172051320.webp' alt={alt} className="hp-hero-img" /> */}
             {/* <img src={`https://api.romaindrouet.com${imageUrl}`} alt={alt} className="hp-hero-img" id="js-hero-img"/> */}
             <div className="background-container">
                 <div className="stars"></div>

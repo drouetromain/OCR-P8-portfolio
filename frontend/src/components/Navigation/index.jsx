@@ -1,4 +1,3 @@
-import * as PropTypes from 'prop-types';
 import React, { useState, useEffect } from 'react';
 import { getNavigations } from '../../lib/common-navigation';
 import NavItem from '../NavItem';
@@ -21,7 +20,14 @@ function Navigation() {
     getNavigationList();
   }, []);
 
-  const displayNavigation =   navigation ? navigation.map(({ _id, label, link, target }) => <div key={_id} ><NavItem _id={_id} label={label} link={link} target={target} /></div>) : <h1>Vide</h1>;
+  const displayNavigation = navigation ? navigation.map(({ _id, label, link, target }) =>
+    <div key={_id} >
+      
+      <NavItem _id={_id} label={label} link={link} target={target} />
+
+    </div>)
+    :
+    <h1>Vide</h1>;
   return (
     <nav className='hp-nav-bar'>
       {loading ? <h1>Chargement en cours...</h1> : displayNavigation}

@@ -38,7 +38,7 @@ body{
 }
 /* Navigation */
 
-.hp-header-icon-burger-menu{
+.hp-header-btn-burger-menu{
     display: none;
 }
 
@@ -188,12 +188,12 @@ body{
 
 /* Contact */
 
-.hp-article-contact{
+.hp-section-contact{
     display: flex;
     flex-direction: column;
 }
 
-.hp-article-contact h2{
+.hp-section-contact h2{
     text-align: center;
 }
 
@@ -297,12 +297,7 @@ body{
     /* Hero  */
 
     .hp-section-hero{
-        height: 400px;
-    }
-
-    .hp-hero-h1-block{
-        background: url(https://api.romaindrouet.com/images/hero-drouet-romain-1200x1600px.webp);
-        background-size: cover;
+        height: 100vh;
     }
 
     .hp-hero-img{
@@ -311,14 +306,19 @@ body{
     
     /* Navigation */
 
-    .hp-header-icon-burger-menu{
+    .hp-header-btn-burger-menu{
         display: block;
         position: absolute;
-        top: 10px;
+        top: -50px;
+        left: 10px;
         z-index: 11;
         background: transparent;
         color: #fff;
         border: none;
+    }
+
+    .hp-header-icon-burger-menu{
+        font-size: 30px;
     }
 
     .hp-display-nav{

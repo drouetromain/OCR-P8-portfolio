@@ -24,9 +24,9 @@ function Services() {
   return (
     <section className='hp-section-presentation'>
         <h2 className='hp-h2 gradient-text' id="services">A votre service !</h2>
-        <div className='hp-services-block'>
+        <article className='hp-services-block'>
             {loading ? <h1>Chargement en cours...</h1> : displayServices}      
-        </div>
+        </article>
         
 
     </section>

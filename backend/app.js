@@ -45,5 +45,6 @@ app.use('/api', socialmediaRoutes);
 app.use('/api', cvRoutes);
 app.use('/api/auth', userRoutes);
 app.use('/images', express.static(path.join(__dirname, 'controllers/images')));
+app.use('/docs', express.static(path.join(__dirname, 'controllers/docs')));
 
 module.exports = app;

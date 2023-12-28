@@ -6,7 +6,6 @@ import Header from '../../components/Header/';
 function Heros() {
   // Récupération des présentations
   const [heros, setHeros] = useState(null);
-  const [isOpen, setIsOpen] = useState(false);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
@@ -49,24 +48,10 @@ function Heros() {
             <li>ROMAIN</li>
             <li>DROUET</li>
             <li>.COM</li>
-            {/* <li>CSS</li> */}
             </ul>
         </div>
       </div>
-      <div>
-        <button className='hp-header-icon-burger-menu' onClick={() => {
-          setIsOpen(true);
-          console.log('isOpen:' + isOpen)
-        }} >
-          <span className="material-symbols-outlined">menu</span>
-        </button>
-        <div className={
-          isOpen ? "hp-display-nav" : "hp-not-displayed-nav"
-        }>
-          <Header  />
-        </div>
-        
-      </div>
+      <Header />
       <Hero title={title} anchorId={anchorId} imageUrl={imageUrl} alt={alt} subTitle={subTitle} imgHeight={imgHeight} />
     </div>) : <h1>Vide</h1>;
   

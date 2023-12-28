@@ -1,6 +1,7 @@
+
 function Contact() {
     return (
-        <article className="hp-article-contact">
+        <section className="hp-section-contact">
             <h2 className="hp-h2 gradient-text" id="contact">Contactez-moi</h2>
             <div className="hp-div hp-description">Une idée ? Un projet ? N'hésitez-pas à me contacter pour toutes demandes d'informations ou devis.</div>
             <form action="/ma-page-de-traitement" method="post" className="hp-contact-form">
@@ -27,7 +28,7 @@ function Contact() {
                 
             </form>
             
-        </article>
+        </section>
     )
 }
 
